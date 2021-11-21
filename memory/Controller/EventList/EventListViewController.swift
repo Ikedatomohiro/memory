@@ -221,7 +221,8 @@ class EventListViewController: UIViewController {
     }
 }
 
-// MARK:- Extension
+// MARK: - Extensions
+
 extension EventListViewController: EventListTableViewDelegate {
     func didSelectEvent(event: Event) {
         moveToEventMenu(event: event)

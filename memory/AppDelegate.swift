@@ -20,8 +20,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey : Any]?) -> Bool {
         // Firebase
         FirebaseApp.configure()
-//        GIDSignIn.sharedInstance()?.clientID = FirebaseApp.app()?.options.clientID
-//        GIDSignIn.sharedInstance().clientID = FirebaseApp.app()?.options.clientID
+
         window = UIWindow(frame: UIScreen.main.bounds)
        
         let eventListVC: EventListViewController = EventListViewController()

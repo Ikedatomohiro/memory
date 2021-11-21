@@ -45,6 +45,10 @@
 		E5AD3BB4273FD32F00B4ECE0 /* EventListTableView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E5AD3BB1273FD32F00B4ECE0 /* EventListTableView.swift */; };
 		E5AD3BB5273FD32F00B4ECE0 /* EventListHeaderFooterView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E5AD3BB2273FD32F00B4ECE0 /* EventListHeaderFooterView.swift */; };
 		E5AD3BB6273FD32F00B4ECE0 /* EventListCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = E5AD3BB3273FD32F00B4ECE0 /* EventListCell.swift */; };
+		E5C201B3274A0C9000FBD2CE /* CardHeaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E5C201B2274A0C9000FBD2CE /* CardHeaderView.swift */; };
+		E5C201B5274A0CC300FBD2CE /* GuestCardViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E5C201B4274A0CC300FBD2CE /* GuestCardViewController.swift */; };
+		E5C201B8274A11B500FBD2CE /* GuestNameView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E5C201B7274A11B500FBD2CE /* GuestNameView.swift */; };
+		E5C201BA274A2F8F00FBD2CE /* UITextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = E5C201B9274A2F8F00FBD2CE /* UITextField.swift */; };
 		E5E303C2273CED130045C59B /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = E5E303C1273CED130045C59B /* AppDelegate.swift */; };
 		E5E303CE273CED140045C59B /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = E5E303CC273CED140045C59B /* LaunchScreen.storyboard */; };
 		E5E303D9273CED140045C59B /* memoryTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = E5E303D8273CED140045C59B /* memoryTests.swift */; };
@@ -123,6 +127,10 @@
 		E5AD3BB2273FD32F00B4ECE0 /* EventListHeaderFooterView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EventListHeaderFooterView.swift; sourceTree = "<group>"; };
 		E5AD3BB3273FD32F00B4ECE0 /* EventListCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EventListCell.swift; sourceTree = "<group>"; };
 		E5AD3BB9273FD3E000B4ECE0 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		E5C201B2274A0C9000FBD2CE /* CardHeaderView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CardHeaderView.swift; sourceTree = "<group>"; };
+		E5C201B4274A0CC300FBD2CE /* GuestCardViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GuestCardViewController.swift; sourceTree = "<group>"; };
+		E5C201B7274A11B500FBD2CE /* GuestNameView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GuestNameView.swift; sourceTree = "<group>"; };
+		E5C201B9274A2F8F00FBD2CE /* UITextField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UITextField.swift; sourceTree = "<group>"; };
 		E5E303BE273CED130045C59B /* memory.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = memory.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		E5E303C1273CED130045C59B /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		E5E303CD273CED140045C59B /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
@@ -192,6 +200,7 @@
 				E55DA4FA273FD63800CBAE45 /* UITraitCollection.swift */,
 				E55DA4FC273FD65800CBAE45 /* UIButton.swift */,
 				E59627422749D4EA0093E7CE /* UIImage.swift */,
+				E5C201B9274A2F8F00FBD2CE /* UITextField.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -260,11 +269,12 @@
 			path = SideMenu;
 			sourceTree = "<group>";
 		};
-		E596275F2749DB480093E7CE /* New Group */ = {
+		E596275F2749DB480093E7CE /* GuestCard */ = {
 			isa = PBXGroup;
 			children = (
+				E5C201B4274A0CC300FBD2CE /* GuestCardViewController.swift */,
 			);
-			path = "New Group";
+			path = GuestCard;
 			sourceTree = "<group>";
 		};
 		E596276A2749DC840093E7CE /* GuestList */ = {
@@ -287,6 +297,15 @@
 				E5AD3BB1273FD32F00B4ECE0 /* EventListTableView.swift */,
 			);
 			path = EventList;
+			sourceTree = "<group>";
+		};
+		E5C201B1274A0C6600FBD2CE /* GuestCard */ = {
+			isa = PBXGroup;
+			children = (
+				E5C201B2274A0C9000FBD2CE /* CardHeaderView.swift */,
+				E5C201B7274A11B500FBD2CE /* GuestNameView.swift */,
+			);
+			path = GuestCard;
 			sourceTree = "<group>";
 		};
 		E5E303B5273CED130045C59B = {
@@ -362,6 +381,7 @@
 		E5E45474273D3F1400F22729 /* View */ = {
 			isa = PBXGroup;
 			children = (
+				E5C201B1274A0C6600FBD2CE /* GuestCard */,
 				E596276A2749DC840093E7CE /* GuestList */,
 				E59627582749DACE0093E7CE /* SideMenu */,
 				E59627512749DA530093E7CE /* EventSetting */,
@@ -374,7 +394,7 @@
 		E5E45475273D3F3800F22729 /* Controller */ = {
 			isa = PBXGroup;
 			children = (
-				E596275F2749DB480093E7CE /* New Group */,
+				E596275F2749DB480093E7CE /* GuestCard */,
 				E5E45479273D400300F22729 /* EventList */,
 				E596274E2749DA180093E7CE /* EventSetting */,
 				E59627462749D8F50093E7CE /* EventMenu */,
@@ -674,6 +694,7 @@
 				E59627702749DCFB0093E7CE /* GuestListTableView.swift in Sources */,
 				E596273E2749D2D10093E7CE /* CreateEventPresentationController.swift in Sources */,
 				E59627532749DA6E0093E7CE /* EventSettingTableView.swift in Sources */,
+				E5C201B5274A0CC300FBD2CE /* GuestCardViewController.swift in Sources */,
 				E596275A2749DAE60093E7CE /* SideMenuView.swift in Sources */,
 				E59627742749DD2F0093E7CE /* CsvList.swift in Sources */,
 				E59627572749DAA00093E7CE /* EventSettingHeaderFotterView.swift in Sources */,
@@ -694,6 +715,7 @@
 				E59627632749DBB30093E7CE /* PrivacyPolicyViewController.swift in Sources */,
 				E55DA500273FD7AC00CBAE45 /* SignInViewController.swift in Sources */,
 				E5ECB99F273F7C190033513E /* Constants.swift in Sources */,
+				E5C201B8274A11B500FBD2CE /* GuestNameView.swift in Sources */,
 				E5E303C2273CED130045C59B /* AppDelegate.swift in Sources */,
 				E5ECB9A1273F7D800033513E /* SceneDelegate.swift in Sources */,
 				E55DA4F3273FD5EC00CBAE45 /* Anchor.swift in Sources */,
@@ -703,6 +725,8 @@
 				E59627652749DBCE0093E7CE /* TermsOfUseViewController.swift in Sources */,
 				E5E45480273D40EF00F22729 /* Event.swift in Sources */,
 				E5ECB999273F79A50033513E /* Retual.swift in Sources */,
+				E5C201B3274A0C9000FBD2CE /* CardHeaderView.swift in Sources */,
+				E5C201BA274A2F8F00FBD2CE /* UITextField.swift in Sources */,
 				E5ECB99B273F79C10033513E /* Relation.swift in Sources */,
 				E59627552749DA830093E7CE /* EventSettingTableViewCell.swift in Sources */,
 				E59627692749DC690093E7CE /* GuestListViewController.swift in Sources */,
