@@ -20,6 +20,7 @@ protocol GuestItemUpdateDelegate: AnyObject {
 
 class GuestCardViewController: UIViewController {
     
+    var event: Event
     var guest: Guest
     var retuals: [Retual]
     var relations: [Relation]
@@ -39,14 +40,15 @@ class GuestCardViewController: UIViewController {
     fileprivate var captureImage       = UIImage()
     var updateGuestParam = Set<String>()
     fileprivate let storage            = Storage.storage().reference(forURL: Keys.firestoreStorageUrl)
-    
+    fileprivate let registButton       = UIButton()
 //    lazy var retualCollectionView = RetualCollectionView(guest, retuals, frame: CGRect.zero)
 //    lazy var selectRelationView = SelectRelationView(guest, relations, relationCollectionView, frame: CGRect.zero)
 //    lazy var relationCollectionView = RelationCollectionView(guest, relations, frame: CGRect.zero)
 //    lazy var selectGroupView = SelectGroupView(guest, groups, groupCollectionView, frame: CGRect.zero)
 //    lazy var groupCollectionView = GroupCollectionView(guest, groups, frame: CGRect.zero)
     
-    init(guest: Guest, retuals: [Retual], relations: [Relation], groups: [Group]) {
+    init(event: Event, guest: Guest, retuals: [Retual], relations: [Relation], groups: [Group]) {
+        self.event = event
         self.guest = guest
         self.retuals = retuals
         self.relations = relations
@@ -62,6 +64,7 @@ class GuestCardViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         self.navigationController?.setNavigationBarHidden(true, animated: true)
+        
         setupBasic()
         setupCardHeaderView()
         
@@ -84,18 +87,16 @@ class GuestCardViewController: UIViewController {
 //        setupSelectGroupView()
 //        setBackGroundFrameAnchor()
 //        setupDescriptionView()
-//        setupBackToMenuButton()
+        setupBackToMenuButton()
+        setupRegistButton()
     }
     
     override func viewWillAppear(_ animated: Bool) {
-        // ペンシルはページ表示後にセットする
-        setupPencils()
+
     }
     
     override func viewWillDisappear(_ animated: Bool) {
-        if updateGuestParam.count == 0 { return }
-        // 画像を保存する
-        uploadGuestCardViewArea()
+
     }
     
     fileprivate func setupBasic() {
@@ -184,6 +185,7 @@ class GuestCardViewController: UIViewController {
 //        descriptionView.guestItemupdateDelegate = self
 //    }
     
+    /// メニューに戻るボタン
     fileprivate func setupBackToMenuButton() {
         view.addSubview(backToMenuButton)
         backToMenuButton.setTitle("<< メニューに戻る", for: .normal)
@@ -192,69 +194,47 @@ class GuestCardViewController: UIViewController {
         backToMenuButton.addTarget(self, action: #selector(backToMenu), for: .touchUpInside)
     }
     
+    /// メニューに戻るボタンがタップされた時の処理
     @objc func backToMenu() {
-        if updateGuestParam.count > 0 {
-            // 画像を保存する
-            uploadGuestCardViewArea()
-        }
         // メニュー画面に戻る
         self.navigationController?.popViewController(animated: true)
         // 非表示にしたNavigationControllerを再度表示させる
         self.navigationController?.setNavigationBarHidden(false, animated: true)
     }
     
-    fileprivate func setupPencils() {
-//        guestNameView.setupPencil()
-//        companyNameView.setupPencil()
-//        addressView.setupPencil()
-//        descriptionView.setupPencil()
+    /// 登録ボタン
+    fileprivate func setupRegistButton() {
+        view.addSubview(registButton)
+        registButton.buttonCustomise(registButton, "入力完了")
+        registButton.anchor(top: guestNameView.bottomAnchor, leading: view.layoutMarginsGuide.leadingAnchor, bottom: nil, trailing: nil, padding: .init(top: 20, left: 0, bottom: 0, right: 0), size: .init(width: 150, height: 40))
+        registButton.addTarget(self, action: #selector(registGuest), for: .touchUpInside)
     }
     
-    fileprivate func uploadGuestCardViewArea() {
-        captureImage = viewToImage(self.view)
-        let imageFile = captureImage.pngData() ?? Data()
-        let fileName = "\(guest.id)_guestCard"
-        let strageRef = storage.child("\(fileName).png")
-        strageRef.putData(imageFile, metadata: nil) { (metaData, error) in
-            if error != nil {
-                print(error.debugDescription)
-            }
-        }
+    @objc func registGuest() {
+        guest.guestName = guestNameView.guestNameTextField.text ?? ""
+        let defaultGuest = Guest("", retuals, relations, groups)
+
+        guard guest != defaultGuest else { return }
+        Guest.registGuest(guest, event.eventId)
+        resetGuest()
+        
     }
     
-    func viewToImage(_ view : UIView) -> UIImage {
-        // 取得する画像サイズを設定
-        var size = screenSize
-        guard let statusBar = view.window?.windowScene?.statusBarManager?.statusBarFrame.size else { return UIImage() }
-        // ステータスバー（日時とか電池の表示エリア）の高さとヘッダーの高さの和を画像からカットする
-        let cutHeight = cardHeaderView.frame.height + statusBar.height
-        size.height = size.height - cutHeight
-        //コンテキスト開始
-        UIGraphicsBeginImageContextWithOptions(size, false, 0.0)
-        guard let context = UIGraphicsGetCurrentContext() else {
-            return UIImage()
-        }
-        // 画像のスクリーンショットの開始位置を制御
-        context.translateBy(x: 0, y: -cutHeight)
-        self.view.layer.render(in: context)
-        //viewを書き出す
-        self.view.drawHierarchy(in: self.view.bounds, afterScreenUpdates: true)
-        // imageにコンテキストの内容を書き出す
-        let image: UIImage = UIGraphicsGetImageFromCurrentImageContext()!
-        //コンテキストを閉じる
-        UIGraphicsEndImageContext()
-        return image
+    fileprivate func resetGuest() {
+        guestNameView.guestNameTextField.text = ""
     }
+
 }
 
-// MARK:- Extensions
+// MARK: - Extensions
 extension GuestCardViewController: GuestItemUpdateDelegate {
     func update<T>(inputView: T) {
         guard let identifier = (inputView as! UIView).accessibilityIdentifier else { return }
         updateGuestParam.insert(identifier)
-//        // 各変更項目に対して値を更新する
-//        if identifier == "guestName" {
+        // 各変更項目に対して値を更新する
+        if identifier == "guestName" {
 //            guest.guestNameImageData = guestNameView.guestNameCanvas.drawing.dataRepresentation()
+            guest.guestName = guestNameView.guestNameTextField.text ?? ""
 //        } else if identifier == "companyName" {
 //            guest.companyNameImageData = companyNameView.companyNameCanvas.drawing.dataRepresentation()
 //        } else if identifier == "zipCode" {
@@ -271,7 +251,7 @@ extension GuestCardViewController: GuestItemUpdateDelegate {
 //            guest.relations = relationCollectionView.guest.relations
 //        } else if identifier == "description" {
 //            guest.descriptionImageData = descriptionView.descriptionCanvas.drawing.dataRepresentation()
-//        }
+        }
         print(updateGuestParam)
         guestupdateDelegate?.update(guest: guest, updateGuestParam: updateGuestParam)
     }

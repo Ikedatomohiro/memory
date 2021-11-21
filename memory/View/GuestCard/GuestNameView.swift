@@ -6,14 +6,10 @@
 //
 
 import UIKit
-import PencilKit
 
 class GuestNameView: UIView {
     fileprivate let guestNameTitleLabel = UILabel()
-    let guestNameCanvas                 = PKCanvasView()
-    fileprivate let guestNameTextField  = UITextField()
-    fileprivate let honorificTitle      = UILabel()
-    var guestNameImageData              = Data()
+    let guestNameTextField  = UITextField()
     weak var guestItemupdateDelegate: GuestItemUpdateDelegate?
     
     override init(frame: CGRect) {
@@ -37,7 +33,6 @@ class GuestNameView: UIView {
         addSubview(guestNameTextField)
         guestNameTextField.anchor(top: topAnchor, leading: nil, bottom: layoutMarginsGuide.bottomAnchor, trailing: trailingAnchor, size: .init(width: screenSize.width * 3 / 4, height: .zero))
         guestNameTextField.font = UIFont.systemFont(ofSize: 40)
-        
     }
     
     /// ご芳名ラベル
@@ -56,6 +51,5 @@ class GuestNameView: UIView {
         underLine.backgroundColor = .black
     }
     
-    /// 変更されたら保存する
-    
 }
+

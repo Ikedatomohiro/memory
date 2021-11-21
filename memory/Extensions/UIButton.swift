@@ -18,4 +18,11 @@ extension UIButton {
             }, completion: nil)
         }
     }
+    
+    func buttonCustomise(_ button: UIButton, _ text: String) {
+        button.setTitle(text, for: .normal)
+        button.backgroundColor = green
+        button.titleLabel?.font = .systemFont(ofSize: 24)
+        button.layer.cornerRadius = 5
+    }
 }
