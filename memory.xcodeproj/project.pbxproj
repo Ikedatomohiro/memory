@@ -375,13 +375,13 @@
 			isa = PBXGroup;
 			children = (
 				E596275F2749DB480093E7CE /* New Group */,
+				E5E45479273D400300F22729 /* EventList */,
 				E596274E2749DA180093E7CE /* EventSetting */,
 				E59627462749D8F50093E7CE /* EventMenu */,
 				E596273F2749D3C40093E7CE /* SideMenu */,
 				E55DA4FE273FD79A00CBAE45 /* SignIn */,
 				E5E4547B273D402800F22729 /* InputGuest */,
 				E5E4547A273D401300F22729 /* GuestList */,
-				E5E45479273D400300F22729 /* EventList */,
 			);
 			path = Controller;
 			sourceTree = "<group>";
