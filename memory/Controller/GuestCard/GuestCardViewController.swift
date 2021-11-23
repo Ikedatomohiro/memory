@@ -32,7 +32,8 @@ class GuestCardViewController: UIViewController {
     fileprivate let backGroundFrame    = UIView()
     fileprivate let cardHeaderView     = CardHeaderView()
 //    fileprivate let cardTitleView      = CardTitleView()
-    fileprivate let guestNameView      = GuestNameView()
+    lazy var guestNameView = InputGuestPlainView(frame: .zero, labelText: "御芳名", identifire: "guestName")
+    lazy var companyNameView = InputGuestPlainView(frame: .zero, labelText: "会社名", identifire: "companyName")
 //    fileprivate let companyNameView    = CompanyNameView()
 //    fileprivate let addressView        = AddressView()
 //    fileprivate let descriptionView    = DescriptionView()
@@ -67,7 +68,9 @@ class GuestCardViewController: UIViewController {
         
         setupBasic()
         setupCardHeaderView()
-        
+        setupGuestNameView()
+        setupCompanyNameView()
+
         
         
         
@@ -80,8 +83,6 @@ class GuestCardViewController: UIViewController {
 //        setupCardTitleView()
 //        setupRetualsSelectView()
 //        setupBackgroundFrame()
-        setupGuestNameView()
-//        setupCompanyNameView()
 //        setupAddressView()
 //        setupSelectRelationView()
 //        setupSelectGroupView()
@@ -90,6 +91,9 @@ class GuestCardViewController: UIViewController {
         setupBackToMenuButton()
         setupRegistButton()
     }
+    
+    /// 表示アイテムを設定
+    ///
     
     override func viewWillAppear(_ animated: Bool) {
 
@@ -109,12 +113,8 @@ class GuestCardViewController: UIViewController {
         cardHeaderView.setupView(index: index)
     }
     
-//    fileprivate func setupCardTitleView() {
-//        view.addSubview(cardTitleView)
-//        cardTitleView.anchor(top: cardHeaderView.bottomAnchor, leading: view.layoutMarginsGuide.leadingAnchor, bottom: nil, trailing: nil, size: .init(width: screenSize.width / 2, height: screenSize.height / 16))
-//        cardTitleView.setupView()
-//    }
-//
+
+    
 //    fileprivate func setupRetualsSelectView() {
 //        view.addSubview(retualCollectionView)
 //        retualCollectionView.anchor(top: cardHeaderView.bottomAnchor, leading: nil, bottom: nil, trailing: cardHeaderView.trailingAnchor, size: .init(width: 300, height: screenSize.height / 16))
@@ -122,25 +122,36 @@ class GuestCardViewController: UIViewController {
 //        retualCollectionView.guestItemUpdateDelegate = self
 //    }
 //
-//    fileprivate func setupBackgroundFrame() {
-//        view.addSubview(backGroundFrame)
-//    }
-//
+    /// デバイスの向きが変わった時を検知した時の処理
+    override func viewWillTransition(to size: CGSize, with coordinator: UIViewControllerTransitionCoordinator) {
+        super.viewWillTransition(to: size, with: coordinator)
+        coordinator.animate(alongsideTransition: { _ in
+           if size.width > size.height {
+               print("横向き表示です。")
+
+           } else {
+               print("縦向き表示です。")
+           }
+
+        }) { UIViewControllerTransitionCoordinatorContext in
+            
+            self.guestNameView.setupLabel(width: Int(size.width))
+        }
+    }
+    
     fileprivate func setupGuestNameView() {
         view.addSubview(guestNameView)
-        guestNameView.setupView(guest: guest)
+        guestNameView.setupView()
         guestNameView.anchor(top: cardHeaderView.bottomAnchor, leading: self.view.layoutMarginsGuide.leadingAnchor, bottom: nil, trailing: self.view.layoutMarginsGuide.trailingAnchor, size: .init(width: .zero, height: screenSize.height / 10))
-//        guestNameView.layer.borderWidth = 1.0
         guestNameView.guestItemupdateDelegate = self
     }
-//
-//    fileprivate func setupCompanyNameView() {
-//        view.addSubview(companyNameView)
-//        companyNameView.setupView(guest: guest)
-//        companyNameView.anchor(top: backGroundFrame.topAnchor, leading: guestNameView.trailingAnchor, bottom: guestNameView.bottomAnchor, trailing: backGroundFrame.trailingAnchor, size: .zero)
-//        companyNameView.layer.borderWidth = 1.0
-//        companyNameView.guestItemupdateDelegate = self
-//    }
+
+    fileprivate func setupCompanyNameView() {
+        view.addSubview(companyNameView)
+        companyNameView.setupView()
+        companyNameView.anchor(top: guestNameView.bottomAnchor, leading: self.view.layoutMarginsGuide.leadingAnchor, bottom: nil, trailing: self.view.layoutMarginsGuide.trailingAnchor, size: .init(width: .zero, height: screenSize.height / 10))
+        companyNameView.guestItemupdateDelegate = self
+    }
 //
 //    fileprivate func setupAddressView() {
 //        view.addSubview(addressView)
@@ -164,18 +175,6 @@ class GuestCardViewController: UIViewController {
 //        selectGroupView.guestItemUpdateDelegate = self
 //    }
     
-    // ここでbackGroundFrameのanchorを書くといいのではないか
-    fileprivate func setBackGroundFrameAnchor() {
-//        backGroundFrame.anchor(top: cardTitleView.bottomAnchor, leading: view.layoutMarginsGuide.leadingAnchor, bottom: nil, trailing: view.layoutMarginsGuide.trailingAnchor, padding: .init(top: 0, left: 10, bottom: 0, right: 10))
-////        backGroundFrame.translatesAutoresizingMaskIntoConstraints = false
-////        backGroundFrame.topAnchor.constraint(equalTo: cardTitleView.bottomAnchor)
-////        backGroundFrame.topAnchor.constraint(lessThanOrEqualTo: view.layoutMarginsGuide.bottomAnchor).isActive = true
-//
-//
-//
-//        backGroundFrame.accessibilityIdentifier = "backGroundFrame"
-//        backGroundFrame.layer.borderWidth = 2.0
-    }
     
 //    // 備考
 //    fileprivate func setupDescriptionView() {
@@ -211,17 +210,22 @@ class GuestCardViewController: UIViewController {
     }
     
     @objc func registGuest() {
-        guest.guestName = guestNameView.guestNameTextField.text ?? ""
+        // ボタンを動かす
+        registButton.animateView(registButton)
+        guest.guestName = guestNameView.textField.text ?? ""
+        guest.companyName = companyNameView.textField.text ?? ""
         let defaultGuest = Guest("", retuals, relations, groups)
 
         guard guest != defaultGuest else { return }
         Guest.registGuest(guest, event.eventId)
-        resetGuest()
+        // TODO: -　登録完了アラート
         
+        resetGuest()
     }
     
     fileprivate func resetGuest() {
-        guestNameView.guestNameTextField.text = ""
+        guestNameView.textField.text = ""
+        companyNameView.textField.text = ""
     }
 
 }
@@ -234,23 +238,23 @@ extension GuestCardViewController: GuestItemUpdateDelegate {
         // 各変更項目に対して値を更新する
         if identifier == "guestName" {
 //            guest.guestNameImageData = guestNameView.guestNameCanvas.drawing.dataRepresentation()
-            guest.guestName = guestNameView.guestNameTextField.text ?? ""
-//        } else if identifier == "companyName" {
-//            guest.companyNameImageData = companyNameView.companyNameCanvas.drawing.dataRepresentation()
-//        } else if identifier == "zipCode" {
-//            guest.zipCodeImageData = addressView.zipCodeCanvas.drawing.dataRepresentation()
-//        } else if identifier == "address" {
-//            guest.addressImageData = addressView.addressCanvas.drawing.dataRepresentation()
-//        } else if identifier == "telNumber" {
-//            guest.telNumberImageData = addressView.telNumberCanvas.drawing.dataRepresentation()
-//        } else if identifier == "retuals" {
+            guest.guestName = guestNameView.textField.text ?? ""
+        } else if identifier == "companyName" {
+            guest.companyName = companyNameView.textField.text ?? ""
+        } else if identifier == "zipCode" {
+            guest.guestName = guestNameView.textField.text ?? ""
+        } else if identifier == "address" {
+            guest.guestName = guestNameView.textField.text ?? ""
+        } else if identifier == "telNumber" {
+            guest.guestName = guestNameView.textField.text ?? ""
+        } else if identifier == "retuals" {
 //            guest.retuals = retualCollectionView.guest.retuals
-//        } else if identifier == "groups" {
+        } else if identifier == "groups" {
 //            guest.groups = groupCollectionView.guest.groups
-//        } else if identifier == "relations" {
+        } else if identifier == "relations" {
 //            guest.relations = relationCollectionView.guest.relations
-//        } else if identifier == "description" {
-//            guest.descriptionImageData = descriptionView.descriptionCanvas.drawing.dataRepresentation()
+        } else if identifier == "description" {
+            guest.guestName = guestNameView.textField.text ?? ""
         }
         print(updateGuestParam)
         guestupdateDelegate?.update(guest: guest, updateGuestParam: updateGuestParam)

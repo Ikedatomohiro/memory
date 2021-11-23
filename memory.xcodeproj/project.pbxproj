@@ -17,6 +17,10 @@
 		E55DA4FB273FD63800CBAE45 /* UITraitCollection.swift in Sources */ = {isa = PBXBuildFile; fileRef = E55DA4FA273FD63800CBAE45 /* UITraitCollection.swift */; };
 		E55DA4FD273FD65800CBAE45 /* UIButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = E55DA4FC273FD65800CBAE45 /* UIButton.swift */; };
 		E55DA500273FD7AC00CBAE45 /* SignInViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E55DA4FF273FD7AC00CBAE45 /* SignInViewController.swift */; };
+		E5823138274C77090007AA9B /* ZipCodeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E5823137274C77090007AA9B /* ZipCodeView.swift */; };
+		E582313A274C77170007AA9B /* AddressView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E5823139274C77170007AA9B /* AddressView.swift */; };
+		E582313C274C77270007AA9B /* TelNumberView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E582313B274C77270007AA9B /* TelNumberView.swift */; };
+		E582313E274C7BBF0007AA9B /* InputGuestPlainView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E582313D274C7BBF0007AA9B /* InputGuestPlainView.swift */; };
 		E596273C2749D20D0093E7CE /* CreateEventViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E596273B2749D20D0093E7CE /* CreateEventViewController.swift */; };
 		E596273E2749D2D10093E7CE /* CreateEventPresentationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E596273D2749D2D10093E7CE /* CreateEventPresentationController.swift */; };
 		E59627412749D3DF0093E7CE /* SideMenuViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E59627402749D3DF0093E7CE /* SideMenuViewController.swift */; };
@@ -47,7 +51,6 @@
 		E5AD3BB6273FD32F00B4ECE0 /* EventListCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = E5AD3BB3273FD32F00B4ECE0 /* EventListCell.swift */; };
 		E5C201B3274A0C9000FBD2CE /* CardHeaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E5C201B2274A0C9000FBD2CE /* CardHeaderView.swift */; };
 		E5C201B5274A0CC300FBD2CE /* GuestCardViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E5C201B4274A0CC300FBD2CE /* GuestCardViewController.swift */; };
-		E5C201B8274A11B500FBD2CE /* GuestNameView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E5C201B7274A11B500FBD2CE /* GuestNameView.swift */; };
 		E5C201BA274A2F8F00FBD2CE /* UITextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = E5C201B9274A2F8F00FBD2CE /* UITextField.swift */; };
 		E5E303C2273CED130045C59B /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = E5E303C1273CED130045C59B /* AppDelegate.swift */; };
 		E5E303CE273CED140045C59B /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = E5E303CC273CED140045C59B /* LaunchScreen.storyboard */; };
@@ -98,6 +101,10 @@
 		E55DA4FA273FD63800CBAE45 /* UITraitCollection.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UITraitCollection.swift; sourceTree = "<group>"; };
 		E55DA4FC273FD65800CBAE45 /* UIButton.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UIButton.swift; sourceTree = "<group>"; };
 		E55DA4FF273FD7AC00CBAE45 /* SignInViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SignInViewController.swift; sourceTree = "<group>"; };
+		E5823137274C77090007AA9B /* ZipCodeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ZipCodeView.swift; sourceTree = "<group>"; };
+		E5823139274C77170007AA9B /* AddressView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddressView.swift; sourceTree = "<group>"; };
+		E582313B274C77270007AA9B /* TelNumberView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TelNumberView.swift; sourceTree = "<group>"; };
+		E582313D274C7BBF0007AA9B /* InputGuestPlainView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InputGuestPlainView.swift; sourceTree = "<group>"; };
 		E596273B2749D20D0093E7CE /* CreateEventViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreateEventViewController.swift; sourceTree = "<group>"; };
 		E596273D2749D2D10093E7CE /* CreateEventPresentationController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreateEventPresentationController.swift; sourceTree = "<group>"; };
 		E59627402749D3DF0093E7CE /* SideMenuViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SideMenuViewController.swift; sourceTree = "<group>"; };
@@ -129,7 +136,6 @@
 		E5AD3BB9273FD3E000B4ECE0 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		E5C201B2274A0C9000FBD2CE /* CardHeaderView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CardHeaderView.swift; sourceTree = "<group>"; };
 		E5C201B4274A0CC300FBD2CE /* GuestCardViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GuestCardViewController.swift; sourceTree = "<group>"; };
-		E5C201B7274A11B500FBD2CE /* GuestNameView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GuestNameView.swift; sourceTree = "<group>"; };
 		E5C201B9274A2F8F00FBD2CE /* UITextField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UITextField.swift; sourceTree = "<group>"; };
 		E5E303BE273CED130045C59B /* memory.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = memory.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		E5E303C1273CED130045C59B /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -303,7 +309,10 @@
 			isa = PBXGroup;
 			children = (
 				E5C201B2274A0C9000FBD2CE /* CardHeaderView.swift */,
-				E5C201B7274A11B500FBD2CE /* GuestNameView.swift */,
+				E5823137274C77090007AA9B /* ZipCodeView.swift */,
+				E5823139274C77170007AA9B /* AddressView.swift */,
+				E582313B274C77270007AA9B /* TelNumberView.swift */,
+				E582313D274C7BBF0007AA9B /* InputGuestPlainView.swift */,
 			);
 			path = GuestCard;
 			sourceTree = "<group>";
@@ -698,13 +707,16 @@
 				E596275A2749DAE60093E7CE /* SideMenuView.swift in Sources */,
 				E59627742749DD2F0093E7CE /* CsvList.swift in Sources */,
 				E59627572749DAA00093E7CE /* EventSettingHeaderFotterView.swift in Sources */,
+				E582313C274C77270007AA9B /* TelNumberView.swift in Sources */,
 				E55DA4F7273FD61F00CBAE45 /* UIView.swift in Sources */,
+				E582313E274C7BBF0007AA9B /* InputGuestPlainView.swift in Sources */,
 				E5ECB99D273F7A3C0033513E /* Group.swift in Sources */,
 				E59627722749DD150093E7CE /* GuestSortAreaView.swift in Sources */,
 				E5E4547E273D408400F22729 /* EventListViewController.swift in Sources */,
 				E596274D2749D9A60093E7CE /* EventInfoAreaView.swift in Sources */,
 				E5AD3BB4273FD32F00B4ECE0 /* EventListTableView.swift in Sources */,
 				E596275C2749DAFC0093E7CE /* SideMenuTableViewCell.swift in Sources */,
+				E582313A274C77170007AA9B /* AddressView.swift in Sources */,
 				E596276E2749DCE00093E7CE /* GuestListHeaderCell.swift in Sources */,
 				E596276C2749DC940093E7CE /* GuestCell.swift in Sources */,
 				E5E45482273D416B00F22729 /* Guest.swift in Sources */,
@@ -712,10 +724,10 @@
 				E55DA4FD273FD65800CBAE45 /* UIButton.swift in Sources */,
 				E55DA4F9273FD62E00CBAE45 /* UIColor.swift in Sources */,
 				E59627432749D4EA0093E7CE /* UIImage.swift in Sources */,
+				E5823138274C77090007AA9B /* ZipCodeView.swift in Sources */,
 				E59627632749DBB30093E7CE /* PrivacyPolicyViewController.swift in Sources */,
 				E55DA500273FD7AC00CBAE45 /* SignInViewController.swift in Sources */,
 				E5ECB99F273F7C190033513E /* Constants.swift in Sources */,
-				E5C201B8274A11B500FBD2CE /* GuestNameView.swift in Sources */,
 				E5E303C2273CED130045C59B /* AppDelegate.swift in Sources */,
 				E5ECB9A1273F7D800033513E /* SceneDelegate.swift in Sources */,
 				E55DA4F3273FD5EC00CBAE45 /* Anchor.swift in Sources */,

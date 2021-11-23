@@ -25,69 +25,69 @@ struct Guest {
     
     // MARK: -
     init(document: QueryDocumentSnapshot) {
-        let dictionary            = document.data()
-        self.id                   = document.documentID
-        self.eventId              = dictionary["eventId"]              as? String ?? ""
-        self.guestName            = dictionary["guestName"]            as? String ?? ""
-        self.companyName          = dictionary["companyName"]          as? String ?? ""
-        self.retuals              = dictionary["retuals"]              as? Dictionary<String, Bool> ?? [:]
-        self.zipCode              = dictionary["zipCode"]              as? String ?? ""
-        self.address              = dictionary["address"]              as? String ?? ""
-        self.telNumber            = dictionary["telNumber"]            as? String ?? ""
-        self.relations            = dictionary["relations"]            as? Dictionary<String, Bool> ?? [:]
-        self.groups               = dictionary["groups"]               as? Dictionary<String, Bool> ?? [:]
-        self.description          = dictionary["description"]          as? String ?? ""
-        self.createdAt            = dictionary["createdAt"]            as? Date   ?? Date()
-        self.updatedAt            = dictionary["updatedAt"]            as? Date   ?? Date()
+        let dictionary   = document.data()
+        self.id          = document.documentID
+        self.eventId     = dictionary["eventId"]     as? String ?? ""
+        self.guestName   = dictionary["guestName"]   as? String ?? ""
+        self.companyName = dictionary["companyName"] as? String ?? ""
+        self.retuals     = dictionary["retuals"]     as? Dictionary<String, Bool> ?? [:]
+        self.zipCode     = dictionary["zipCode"]     as? String ?? ""
+        self.address     = dictionary["address"]     as? String ?? ""
+        self.telNumber   = dictionary["telNumber"]   as? String ?? ""
+        self.relations   = dictionary["relations"]   as? Dictionary<String, Bool> ?? [:]
+        self.groups      = dictionary["groups"]      as? Dictionary<String, Bool> ?? [:]
+        self.description = dictionary["description"] as? String ?? ""
+        self.createdAt   = dictionary["createdAt"]   as? Date   ?? Date()
+        self.updatedAt   = dictionary["updatedAt"]   as? Date   ?? Date()
     }
     
     init(_ id: String,_ retualList: [Retual], _ relationList: [Relation], _ groupList: [Group]) {
-        self.id                   = id
-        self.eventId              = ""
-        self.guestName            = ""
-        self.companyName          = ""
-        self.zipCode              = ""
-        self.address              = ""
-        self.telNumber            = ""
-        self.description          = ""
-        self.createdAt            = Date()
-        self.updatedAt            = Date()
+        self.id          = id
+        self.eventId     = ""
+        self.guestName   = ""
+        self.companyName = ""
+        self.zipCode     = ""
+        self.address     = ""
+        self.telNumber   = ""
+        self.description = ""
+        self.createdAt   = Date()
+        self.updatedAt   = Date()
         
         self.retuals     = setDefaultAttendance(retualList: retualList)
         self.relations   = setDefaultRelation(relationList: relationList)
         self.groups      = setDefaultGroup(groupList: groupList)
     }
     
-    static func registGuest(_ guest: Guest, _ eventId: String) -> DocumentReference {
-        let documentRef = Guest.collectionRef(eventId).addDocument(data: [
-            "guestName"            : guest.guestName,
-            "companyName"          : guest.companyName,
-            "retuals"              : guest.retuals,
-            "zipCode"              : guest.zipCode,
-            "address"              : guest.address,
-            "telNumber"            : guest.telNumber,
-            "relations"            : guest.relations,
-            "groups"               : guest.groups,
-            "description"          : guest.description,
-            "eventId"              : eventId,
-            "createdAt"            : Date(),
-            "updatedAt"            : Date(),
+    static func registGuest(_ guest: Guest, _ eventId: String) -> Void {
+        Guest.collectionRef(eventId).addDocument(data: [
+            "guestName"   : guest.guestName,
+            "companyName" : guest.companyName,
+            "retuals"     : guest.retuals,
+            "zipCode"     : guest.zipCode,
+            "address"     : guest.address,
+            "telNumber"   : guest.telNumber,
+            "relations"   : guest.relations,
+            "groups"      : guest.groups,
+            "description" : guest.description,
+            "eventId"     : eventId,
+            "createdAt"   : Date(),
+            "updatedAt"   : Date(),
         ])
-        return documentRef
+        return
     }
 
     static func updateGuest(_ guest: Guest, _ eventId: String, _ analizedText: Dictionary<String, String>?) {
        Guest.collectionRef(eventId).document(guest.id).updateData([
-        "guestName"            : guest.guestName,
-        "companyName"          : guest.companyName,
-        "retuals"              : guest.retuals,
-        "zipCode"              : guest.zipCode,
-        "address"              : guest.address,
-        "telNumber"            : guest.telNumber,
-        "relations"            : guest.relations,
-        "groups"               : guest.groups,
-        "description"          : guest.description,
-        "updatedAt"            : Date(),
+        "guestName"   : guest.guestName,
+        "companyName" : guest.companyName,
+        "retuals"     : guest.retuals,
+        "zipCode"     : guest.zipCode,
+        "address"     : guest.address,
+        "telNumber"   : guest.telNumber,
+        "relations"   : guest.relations,
+        "groups"      : guest.groups,
+        "description" : guest.description,
+        "updatedAt"   : Date(),
         ])
     }
     
@@ -109,20 +109,17 @@ struct Guest {
     }
 }
 
-// MARK:- Extensions
+// MARK: - Extensions
 // 入力されているかどうかチェック
 extension Guest: Equatable {
     static func == (lhs: Guest, rhs: Guest) -> Bool {
-        return lhs.guestName            == rhs.guestName
-            && lhs.companyName          == rhs.companyName
-            && lhs.retuals              == rhs.retuals
-            && lhs.zipCode              == rhs.zipCode
-            && lhs.address              == rhs.address
-            && lhs.telNumber            == rhs.telNumber
-            && lhs.relations            == rhs.relations
-            && lhs.description          == rhs.description
+        return lhs.guestName   == rhs.guestName
+            && lhs.companyName == rhs.companyName
+            && lhs.retuals     == rhs.retuals
+            && lhs.zipCode     == rhs.zipCode
+            && lhs.address     == rhs.address
+            && lhs.telNumber   == rhs.telNumber
+            && lhs.relations   == rhs.relations
+            && lhs.description == rhs.description
     }
 }
-
-
-

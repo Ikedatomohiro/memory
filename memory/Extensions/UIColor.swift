@@ -37,5 +37,7 @@ let dynamicColor = UIColor { (traitCollection: UITraitCollection) -> UIColor in
 }
 
 let lightGreent = UIColor.rgb(red: 209, green: 238, blue: 123)
+let inputAreaColor = UIColor.rgb(red: 226, green: 252, blue: 232)
+let inputAreaFocasColor = UIColor.rgb(red: 201, green: 255, blue: 205)
 let green = UIColor.rgb(red: 150, green: 200, blue: 20)
 let gray = UIColor.rgb(red: 211, green: 211, blue: 211)
