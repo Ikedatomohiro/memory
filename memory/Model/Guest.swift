@@ -6,7 +6,6 @@
 //
 
 import FirebaseFirestore
-import PencilKit
 
 struct Guest {
     var id: String

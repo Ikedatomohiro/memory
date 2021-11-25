@@ -66,7 +66,7 @@ extension GuestListTableView: UITableViewDataSource {
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        guard let cell = tableView.dequeueReusableCell(withIdentifier: GuestCell.className) as? GuestCell else { fatalError("improper UITableViewCell")}
+        guard let cell = tableView.dequeueReusableCell(withIdentifier: GuestListCell.className) as? GuestListCell else { fatalError("improper UITableViewCell")}
         cell.setupGuestCell(guests[indexPath.row], retuals, indexPath: indexPath.row)
         cell.selectionStyle = .none
         return cell

@@ -20,6 +20,7 @@ class InputGuestPlainView: UIView {
         self.titleLabel.text = labelText
         super.init(frame: frame)
         textField.delegate = self
+        setupView()
     }
     
     required init?(coder: NSCoder) {

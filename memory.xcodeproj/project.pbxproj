@@ -17,6 +17,9 @@
 		E55DA4FB273FD63800CBAE45 /* UITraitCollection.swift in Sources */ = {isa = PBXBuildFile; fileRef = E55DA4FA273FD63800CBAE45 /* UITraitCollection.swift */; };
 		E55DA4FD273FD65800CBAE45 /* UIButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = E55DA4FC273FD65800CBAE45 /* UIButton.swift */; };
 		E55DA500273FD7AC00CBAE45 /* SignInViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E55DA4FF273FD7AC00CBAE45 /* SignInViewController.swift */; };
+		E5794D89274F2EC1002A0822 /* GuestCardTableView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E5794D88274F2EC1002A0822 /* GuestCardTableView.swift */; };
+		E5794D8B274F301E002A0822 /* GuestCardTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = E5794D8A274F301E002A0822 /* GuestCardTableViewCell.swift */; };
+		E5794D8D274F47D2002A0822 /* GuestInputItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = E5794D8C274F47D2002A0822 /* GuestInputItem.swift */; };
 		E5823138274C77090007AA9B /* ZipCodeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E5823137274C77090007AA9B /* ZipCodeView.swift */; };
 		E582313A274C77170007AA9B /* AddressView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E5823139274C77170007AA9B /* AddressView.swift */; };
 		E582313C274C77270007AA9B /* TelNumberView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E582313B274C77270007AA9B /* TelNumberView.swift */; };
@@ -40,7 +43,7 @@
 		E59627652749DBCE0093E7CE /* TermsOfUseViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E59627642749DBCE0093E7CE /* TermsOfUseViewController.swift */; };
 		E59627672749DC030093E7CE /* SideMenuPresentationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E59627662749DC030093E7CE /* SideMenuPresentationController.swift */; };
 		E59627692749DC690093E7CE /* GuestListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E59627682749DC690093E7CE /* GuestListViewController.swift */; };
-		E596276C2749DC940093E7CE /* GuestCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = E596276B2749DC940093E7CE /* GuestCell.swift */; };
+		E596276C2749DC940093E7CE /* GuestListCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = E596276B2749DC940093E7CE /* GuestListCell.swift */; };
 		E596276E2749DCE00093E7CE /* GuestListHeaderCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = E596276D2749DCE00093E7CE /* GuestListHeaderCell.swift */; };
 		E59627702749DCFB0093E7CE /* GuestListTableView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E596276F2749DCFB0093E7CE /* GuestListTableView.swift */; };
 		E59627722749DD150093E7CE /* GuestSortAreaView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E59627712749DD150093E7CE /* GuestSortAreaView.swift */; };
@@ -101,6 +104,9 @@
 		E55DA4FA273FD63800CBAE45 /* UITraitCollection.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UITraitCollection.swift; sourceTree = "<group>"; };
 		E55DA4FC273FD65800CBAE45 /* UIButton.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UIButton.swift; sourceTree = "<group>"; };
 		E55DA4FF273FD7AC00CBAE45 /* SignInViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SignInViewController.swift; sourceTree = "<group>"; };
+		E5794D88274F2EC1002A0822 /* GuestCardTableView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GuestCardTableView.swift; sourceTree = "<group>"; };
+		E5794D8A274F301E002A0822 /* GuestCardTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GuestCardTableViewCell.swift; sourceTree = "<group>"; };
+		E5794D8C274F47D2002A0822 /* GuestInputItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GuestInputItem.swift; sourceTree = "<group>"; };
 		E5823137274C77090007AA9B /* ZipCodeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ZipCodeView.swift; sourceTree = "<group>"; };
 		E5823139274C77170007AA9B /* AddressView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddressView.swift; sourceTree = "<group>"; };
 		E582313B274C77270007AA9B /* TelNumberView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TelNumberView.swift; sourceTree = "<group>"; };
@@ -124,7 +130,7 @@
 		E59627642749DBCE0093E7CE /* TermsOfUseViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TermsOfUseViewController.swift; sourceTree = "<group>"; };
 		E59627662749DC030093E7CE /* SideMenuPresentationController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SideMenuPresentationController.swift; sourceTree = "<group>"; };
 		E59627682749DC690093E7CE /* GuestListViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GuestListViewController.swift; sourceTree = "<group>"; };
-		E596276B2749DC940093E7CE /* GuestCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GuestCell.swift; sourceTree = "<group>"; };
+		E596276B2749DC940093E7CE /* GuestListCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GuestListCell.swift; sourceTree = "<group>"; };
 		E596276D2749DCE00093E7CE /* GuestListHeaderCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GuestListHeaderCell.swift; sourceTree = "<group>"; };
 		E596276F2749DCFB0093E7CE /* GuestListTableView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GuestListTableView.swift; sourceTree = "<group>"; };
 		E59627712749DD150093E7CE /* GuestSortAreaView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GuestSortAreaView.swift; sourceTree = "<group>"; };
@@ -286,7 +292,7 @@
 		E596276A2749DC840093E7CE /* GuestList */ = {
 			isa = PBXGroup;
 			children = (
-				E596276B2749DC940093E7CE /* GuestCell.swift */,
+				E596276B2749DC940093E7CE /* GuestListCell.swift */,
 				E596276D2749DCE00093E7CE /* GuestListHeaderCell.swift */,
 				E596276F2749DCFB0093E7CE /* GuestListTableView.swift */,
 				E59627712749DD150093E7CE /* GuestSortAreaView.swift */,
@@ -313,6 +319,8 @@
 				E5823139274C77170007AA9B /* AddressView.swift */,
 				E582313B274C77270007AA9B /* TelNumberView.swift */,
 				E582313D274C7BBF0007AA9B /* InputGuestPlainView.swift */,
+				E5794D88274F2EC1002A0822 /* GuestCardTableView.swift */,
+				E5794D8A274F301E002A0822 /* GuestCardTableViewCell.swift */,
 			);
 			path = GuestCard;
 			sourceTree = "<group>";
@@ -378,6 +386,7 @@
 			isa = PBXGroup;
 			children = (
 				E5E4547F273D40EF00F22729 /* Event.swift */,
+				E5794D8C274F47D2002A0822 /* GuestInputItem.swift */,
 				E5E45481273D416B00F22729 /* Guest.swift */,
 				E5ECB998273F79A50033513E /* Retual.swift */,
 				E5ECB99A273F79C10033513E /* Relation.swift */,
@@ -718,7 +727,7 @@
 				E596275C2749DAFC0093E7CE /* SideMenuTableViewCell.swift in Sources */,
 				E582313A274C77170007AA9B /* AddressView.swift in Sources */,
 				E596276E2749DCE00093E7CE /* GuestListHeaderCell.swift in Sources */,
-				E596276C2749DC940093E7CE /* GuestCell.swift in Sources */,
+				E596276C2749DC940093E7CE /* GuestListCell.swift in Sources */,
 				E5E45482273D416B00F22729 /* Guest.swift in Sources */,
 				E5E45478273D3F7A00F22729 /* Keys.swift in Sources */,
 				E55DA4FD273FD65800CBAE45 /* UIButton.swift in Sources */,
@@ -728,6 +737,7 @@
 				E59627632749DBB30093E7CE /* PrivacyPolicyViewController.swift in Sources */,
 				E55DA500273FD7AC00CBAE45 /* SignInViewController.swift in Sources */,
 				E5ECB99F273F7C190033513E /* Constants.swift in Sources */,
+				E5794D8D274F47D2002A0822 /* GuestInputItem.swift in Sources */,
 				E5E303C2273CED130045C59B /* AppDelegate.swift in Sources */,
 				E5ECB9A1273F7D800033513E /* SceneDelegate.swift in Sources */,
 				E55DA4F3273FD5EC00CBAE45 /* Anchor.swift in Sources */,
@@ -735,6 +745,7 @@
 				E59627502749DA320093E7CE /* EventSettingViewController.swift in Sources */,
 				E59627672749DC030093E7CE /* SideMenuPresentationController.swift in Sources */,
 				E59627652749DBCE0093E7CE /* TermsOfUseViewController.swift in Sources */,
+				E5794D8B274F301E002A0822 /* GuestCardTableViewCell.swift in Sources */,
 				E5E45480273D40EF00F22729 /* Event.swift in Sources */,
 				E5ECB999273F79A50033513E /* Retual.swift in Sources */,
 				E5C201B3274A0C9000FBD2CE /* CardHeaderView.swift in Sources */,
@@ -748,6 +759,7 @@
 				E596273C2749D20D0093E7CE /* CreateEventViewController.swift in Sources */,
 				E59627412749D3DF0093E7CE /* SideMenuViewController.swift in Sources */,
 				E5AD3BB5273FD32F00B4ECE0 /* EventListHeaderFooterView.swift in Sources */,
+				E5794D89274F2EC1002A0822 /* GuestCardTableView.swift in Sources */,
 				E59627482749D90F0093E7CE /* EventMenuViewController.swift in Sources */,
 				E55DA4FB273FD63800CBAE45 /* UITraitCollection.swift in Sources */,
 				E5AD3BB6273FD32F00B4ECE0 /* EventListCell.swift in Sources */,

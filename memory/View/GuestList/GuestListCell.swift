@@ -7,7 +7,7 @@
 
 import UIKit
 
-class GuestCell: UITableViewCell {
+class GuestListCell: UITableViewCell {
 
     fileprivate var numberLabel      = UILabel()
     fileprivate var guestNameLabel   = UILabel()

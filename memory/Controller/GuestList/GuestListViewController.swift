@@ -80,7 +80,7 @@ class GuestListViewController: UIViewController {
         guestListTableView.transitionDelegate = self
         guestListTableView.changeGuestsRankDelegate = self
         // TableViewをセット
-        guestListTableView.register(GuestCell.self, forCellReuseIdentifier: GuestCell.className)
+        guestListTableView.register(GuestListCell.self, forCellReuseIdentifier: GuestListCell.className)
         guestListTableView.separatorStyle = .none
         // 下にスワイプで再読み込み
         guestListTableView.refreshControl = UIRefreshControl()

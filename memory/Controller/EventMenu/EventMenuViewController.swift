@@ -97,12 +97,8 @@ class EventMenuViewController: UIViewController {
         let guestCardVC = GuestCardViewController(event: event, guest: defaultGuest, retuals: retuals, relations: relations, groups: groups)
         guestCardVC.modalPresentationStyle = .fullScreen
         self.navigationController?.pushViewController(guestCardVC, animated: true)
-        
-        
-//        let guestsPVC = GuestsPageViewController(event, retuals, relations, groups, guests)
-//        guestsPVC.modalPresentationStyle = .fullScreen
-//        self.navigationController?.pushViewController(guestsPVC, animated: true)
     }
+
     
     @objc private func showGuestList() {
         let guestListVC = GuestListViewController(event, retuals,guests)
