@@ -29,8 +29,8 @@ struct Event {
         self.eventDate    = dictionary["eventDate"] as? String ?? ""
         self.eventPlace   = dictionary["eventPlace"] as? String ?? ""
         self.description  = dictionary["description"] as? String ?? ""
-        self.createdAt    = dictionary["createdAt"] as? Date ?? Date()
-        self.updatedAt    = dictionary["updatedAt"] as? Date ?? Date()
+        self.createdAt    = (dictionary["createdAt"] as! Timestamp).dateValue()
+        self.updatedAt    = (dictionary["updatedAt"] as! Timestamp).dateValue()
     }
     
     init() {
@@ -56,8 +56,8 @@ struct Event {
         self.eventDate    = dictionary["eventDate"] as? String ?? ""
         self.eventPlace   = dictionary["eventPlace"] as? String ?? ""
         self.description  = dictionary["description"] as? String ?? ""
-        self.createdAt    = dictionary["createdAt"] as? Date ?? Date()
-        self.updatedAt    = dictionary["updatedAt"] as? Date ?? Date()
+        self.createdAt    = (dictionary["createdAt"] as! Timestamp).dateValue()
+        self.updatedAt    = (dictionary["updatedAt"] as! Timestamp).dateValue()
     }
     
     static func getEvent(_ eventId: String) -> DocumentReference {

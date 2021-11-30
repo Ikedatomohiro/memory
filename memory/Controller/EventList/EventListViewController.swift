@@ -61,6 +61,7 @@ class EventListViewController: UIViewController {
         }
     }
     
+    /// 新規作成ボタンを設置
     func setupCreateEventButton() {
         view.addSubview(createEventButton)
         createEventButton.anchor(top: view.layoutMarginsGuide.topAnchor, leading: nil, bottom: nil, trailing: view.layoutMarginsGuide.trailingAnchor, padding: .init(top: 20, left: 0, bottom: 20, right: 10), size: .init(width: 100, height: 50))
@@ -70,6 +71,7 @@ class EventListViewController: UIViewController {
         createEventButton.addTarget(self, action: #selector(createEventButtonDidTap), for: .touchUpInside)
     }
     
+    /// 新規作成ボタンをタップ
     @objc private func createEventButtonDidTap() {
         createEventButton.animateView(createEventButton)
         let VC = CreateEventViewController()
@@ -78,6 +80,7 @@ class EventListViewController: UIViewController {
         self.present(VC, animated: true, completion: nil)
     }
     
+
     fileprivate func setupEventNameTextFeild() {
         view.addSubview(eventNameTextField)
         eventNameTextField.anchor(top: createEventButton.bottomAnchor, leading: nil, bottom: nil, trailing: nil, size: .init(width: 200, height: 70))
