@@ -19,4 +19,9 @@ extension UIView {
         }
         return nil
     }
+
+    struct extensionStruct {
+        // 入力情報をの受け渡しをする
+        static var passGuestItemDelegate: PassGuestItemDelegate?
+    }
 }

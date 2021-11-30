@@ -9,7 +9,15 @@ struct GuestInput {
     let title: String
     let identifire: String
     
-    enum CellType: String, CaseIterable {
+    enum CellType: CaseIterable {
+        case nomal
+        case zipCode
+        case telNumber
+        
+        static let cellTypeList = CellType.allCases.map({ $0 })
+    }
+    
+    enum CellHeadLine: String, CaseIterable {
         case guestName   = "guestName"
         case companyName = "companyName"
         case zipCode     = "zipCode"
@@ -17,7 +25,7 @@ struct GuestInput {
         case telNumber   = "telNumber"
         case description = "description"
         
-        static let cellTypelist = CellType.allCases.map({ $0 })
+        static let cellHeadLineList = CellHeadLine.allCases.map({ $0 })
     }
     
 }

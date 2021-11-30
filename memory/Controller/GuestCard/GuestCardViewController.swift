@@ -14,11 +14,16 @@ protocol GuestCardUpdateDelegate: AnyObject {
     func update(guest: Guest, updateGuestParam: Set<String>)
 }
 
+protocol PassGuestItemDelegate: AnyObject {
+    func pass<Element>(inputView: Element)
+}
+
 protocol GuestItemUpdateDelegate: AnyObject {
     func update<T>(inputView: T)
 }
 
 class GuestCardViewController: UIViewController {
+
     
     var event: Event
     var guest: Guest
@@ -27,6 +32,7 @@ class GuestCardViewController: UIViewController {
     var groups: [Group]
     var index: Int?
     lazy var guestCardTableView = GuestCardTableView(frame: .zero, style: .plain)
+    
     weak var guestupdateDelegate: GuestCardUpdateDelegate?
     
     // UIView
@@ -120,6 +126,7 @@ class GuestCardViewController: UIViewController {
     fileprivate func setupGuestInputTableView() {
         view.addSubview(guestCardTableView)
         guestCardTableView.anchor(top: cardHeaderView.bottomAnchor, leading: view.layoutMarginsGuide.leadingAnchor, bottom: view.layoutMarginsGuide.bottomAnchor, trailing: view.layoutMarginsGuide.trailingAnchor)
+        guestCardTableView.passGuestItemDelegate = self
 //        guestCardTableView.anchor(top: nil, leading: view.layoutMarginsGuide.leadingAnchor, bottom: view.bottomAnchor, trailing: nil)
 
 //        registButton.anchor(top: nil, leading: view.layoutMarginsGuide.leadingAnchor, bottom: view.bottomAnchor, trailing: nil, padding: .init(top: 0, left: 0, bottom: 10, right: 0), size: .init(width: 150, height: 40))
@@ -153,14 +160,14 @@ class GuestCardViewController: UIViewController {
         view.addSubview(guestNameView)
         guestNameView.setupView()
         guestNameView.anchor(top: cardHeaderView.bottomAnchor, leading: self.view.layoutMarginsGuide.leadingAnchor, bottom: nil, trailing: self.view.layoutMarginsGuide.trailingAnchor, size: .init(width: .zero, height: screenSize.height / 10))
-        guestNameView.guestItemupdateDelegate = self
+        guestNameView.passGuestItemDelegate = self
     }
     
     fileprivate func setupCompanyNameView() {
         view.addSubview(companyNameView)
         companyNameView.setupView()
         companyNameView.anchor(top: guestNameView.bottomAnchor, leading: self.view.layoutMarginsGuide.leadingAnchor, bottom: nil, trailing: self.view.layoutMarginsGuide.trailingAnchor, size: .init(width: .zero, height: screenSize.height / 10))
-        companyNameView.guestItemupdateDelegate = self
+        companyNameView.passGuestItemDelegate = self
     }
     //
     //    fileprivate func setupAddressView() {
@@ -238,6 +245,11 @@ class GuestCardViewController: UIViewController {
         companyNameView.textField.text = ""
     }
     
+    /// テキストフィールドから受け取った情報をGuestにセット
+    fileprivate func setGuestInfo<Element>(inputView: Element) {
+        
+    }
+    
 }
 
 // MARK: - Extensions
@@ -265,6 +277,12 @@ extension GuestCardViewController: GuestItemUpdateDelegate {
         } else if identifier == "description" {
             guest.guestName = guestNameView.textField.text ?? ""
         }
-        guestupdateDelegate?.update(guest: guest, updateGuestParam: updateGuestParam)
+//        guestupdateDelegate?.update(guest: guest, updateGuestParam: updateGuestParam)
     }
+}
+extension GuestCardViewController: PassGuestItemDelegate {
+    func pass<Element>(inputView: Element) {
+        self.setGuestInfo(inputView: inputView)
+    }
+    
 }

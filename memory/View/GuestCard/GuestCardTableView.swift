@@ -7,12 +7,17 @@
 
 import UIKit
 
+
+
+
 class GuestCardTableView: UITableView {
     
-    fileprivate var cellItems: Array<GuestInput.CellType>
+    fileprivate var cellItems: Array<GuestInput.CellHeadLine>
+    weak var passGuestItemDelegate: PassGuestItemDelegate?
+    
     
     override init(frame: CGRect, style: UITableView.Style) {
-        self.cellItems = GuestInput.CellType.cellTypelist
+        self.cellItems = GuestInput.CellHeadLine.cellHeadLineList
         super.init(frame: .zero, style: style)
         // 区切り線を消す
         self.separatorStyle = .none
@@ -50,34 +55,45 @@ extension GuestCardTableView: UITableViewDataSource {
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
         return screenSize.height / 10
     }
-
-    func setCell(cellItem: GuestInput.CellType) -> UITableViewCell {
+    
+    func setCell(cellItem: GuestInput.CellHeadLine) -> UITableViewCell {
         let cell = GuestCardTableViewCell()
-        var vc = UIView()
+        var cellType: GuestInput.CellType?
+        var headlineText: String = ""
         switch cellItem {
-        case GuestInput.CellType.guestName:
-            vc = InputGuestPlainView(frame: .zero, labelText: "ご芳名", identifire: cellItem.rawValue)
+        case .guestName:
+            cellType = GuestInput.CellType.nomal
+            headlineText = "ご芳名"
             break
         case .companyName:
-            vc = InputGuestPlainView(frame: .zero, labelText: "会社名", identifire: cellItem.rawValue)
+            cellType = GuestInput.CellType.nomal
+            headlineText = "会社名"
             break
         case .zipCode:
+            headlineText = "郵便番号"
+
             print("ゆうびん")
             break
         case .address:
+            headlineText = "住所"
             print("じゅうしょ")
             break
         case .telNumber:
+            headlineText = "電話番号"
             print("でんわ")
             break
         case .description:
-            vc = InputGuestPlainView(frame: .zero, labelText: "備考", identifire: cellItem.rawValue)
+            headlineText = "備考"
+            //            vc = InputGuestPlainView(frame: .zero, labelText: "備考", identifire: cellItem.rawValue)
             break
         }
-        cell.setupCell(view: vc)
-        
+        cell.setupCell(cellItem: cellItem, cellType: cellType ?? .nomal, headlineText: headlineText)
+        cell.passGuestItemDelegate = self
         return cell
     }
-    
-    
+}
+extension GuestCardTableView: PassGuestItemDelegate {
+    func pass<Element>(inputView: Element) {
+        passGuestItemDelegate?.pass(inputView: inputView)
+    }
 }

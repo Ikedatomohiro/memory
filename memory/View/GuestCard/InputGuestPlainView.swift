@@ -13,7 +13,7 @@ class InputGuestPlainView: UIView {
     var titleLabel = UILabel()
     var labelText = ""
     let identifire: String
-    weak var guestItemupdateDelegate: GuestItemUpdateDelegate?
+    weak var passGuestItemDelegate: PassGuestItemDelegate?
     
     init(frame: CGRect, labelText: String, identifire: String) {
         self.identifire = identifire
@@ -67,10 +67,19 @@ extension InputGuestPlainView: UITextFieldDelegate {
     // テキストフィールドの編集が終わった時に呼び出されるデリゲートメソッド
     internal func textFieldDidEndEditing(_ textField: UITextField) {
         textField.backgroundColor = inputAreaColor
+        pass(inputView: self)
     }
     
     // 画面をタッチするとキーボードが閉じる処理
     override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
         self.endEditing(true)
     }
+}
+
+extension InputGuestPlainView: PassGuestItemDelegate {
+    func pass<Element>(inputView: Element) {
+        passGuestItemDelegate?.pass(inputView: inputView)
+    }
+    
+    
 }
