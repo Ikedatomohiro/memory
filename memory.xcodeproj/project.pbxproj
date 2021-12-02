@@ -10,6 +10,7 @@
 		390CC1E4C01CBD995D862116 /* Pods_memory.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C63D3373EDD7B73CDD32204F /* Pods_memory.framework */; };
 		548F7E20E2BE5A9E5FF5192D /* Pods_memory_memoryUITests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8DA169CA24F090568279F7A1 /* Pods_memory_memoryUITests.framework */; };
 		81A0DDC28FA9A3C6ED47FAE4 /* Pods_memoryTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5147338796ADA801BD15C531 /* Pods_memoryTests.framework */; };
+		E559EC902758A1EF00686DD0 /* GuestInputSettingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E559EC8F2758A1EF00686DD0 /* GuestInputSettingViewController.swift */; };
 		E55DA4F3273FD5EC00CBAE45 /* Anchor.swift in Sources */ = {isa = PBXBuildFile; fileRef = E55DA4F2273FD5EC00CBAE45 /* Anchor.swift */; };
 		E55DA4F5273FD5F800CBAE45 /* NSObject.swift in Sources */ = {isa = PBXBuildFile; fileRef = E55DA4F4273FD5F800CBAE45 /* NSObject.swift */; };
 		E55DA4F7273FD61F00CBAE45 /* UIView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E55DA4F6273FD61F00CBAE45 /* UIView.swift */; };
@@ -31,7 +32,7 @@
 		E59627482749D90F0093E7CE /* EventMenuViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E59627472749D90F0093E7CE /* EventMenuViewController.swift */; };
 		E596274A2749D9470093E7CE /* SelectGuests.swift in Sources */ = {isa = PBXBuildFile; fileRef = E59627492749D9470093E7CE /* SelectGuests.swift */; };
 		E596274D2749D9A60093E7CE /* EventInfoAreaView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E596274C2749D9A60093E7CE /* EventInfoAreaView.swift */; };
-		E59627502749DA320093E7CE /* EventSettingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E596274F2749DA320093E7CE /* EventSettingViewController.swift */; };
+		E59627502749DA320093E7CE /* EventInfoViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E596274F2749DA320093E7CE /* EventInfoViewController.swift */; };
 		E59627532749DA6E0093E7CE /* EventSettingTableView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E59627522749DA6E0093E7CE /* EventSettingTableView.swift */; };
 		E59627552749DA830093E7CE /* EventSettingTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = E59627542749DA830093E7CE /* EventSettingTableViewCell.swift */; };
 		E59627572749DAA00093E7CE /* EventSettingHeaderFotterView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E59627562749DAA00093E7CE /* EventSettingHeaderFotterView.swift */; };
@@ -97,6 +98,7 @@
 		8DA169CA24F090568279F7A1 /* Pods_memory_memoryUITests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_memory_memoryUITests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		AD1DC603D4ED34AA1DE9D569 /* Pods-memoryTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-memoryTests.release.xcconfig"; path = "Target Support Files/Pods-memoryTests/Pods-memoryTests.release.xcconfig"; sourceTree = "<group>"; };
 		C63D3373EDD7B73CDD32204F /* Pods_memory.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_memory.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		E559EC8F2758A1EF00686DD0 /* GuestInputSettingViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GuestInputSettingViewController.swift; sourceTree = "<group>"; };
 		E55DA4F2273FD5EC00CBAE45 /* Anchor.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Anchor.swift; sourceTree = "<group>"; };
 		E55DA4F4273FD5F800CBAE45 /* NSObject.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NSObject.swift; sourceTree = "<group>"; };
 		E55DA4F6273FD61F00CBAE45 /* UIView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UIView.swift; sourceTree = "<group>"; };
@@ -118,7 +120,7 @@
 		E59627472749D90F0093E7CE /* EventMenuViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EventMenuViewController.swift; sourceTree = "<group>"; };
 		E59627492749D9470093E7CE /* SelectGuests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SelectGuests.swift; sourceTree = "<group>"; };
 		E596274C2749D9A60093E7CE /* EventInfoAreaView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EventInfoAreaView.swift; sourceTree = "<group>"; };
-		E596274F2749DA320093E7CE /* EventSettingViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EventSettingViewController.swift; sourceTree = "<group>"; };
+		E596274F2749DA320093E7CE /* EventInfoViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EventInfoViewController.swift; sourceTree = "<group>"; };
 		E59627522749DA6E0093E7CE /* EventSettingTableView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EventSettingTableView.swift; sourceTree = "<group>"; };
 		E59627542749DA830093E7CE /* EventSettingTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EventSettingTableViewCell.swift; sourceTree = "<group>"; };
 		E59627562749DAA00093E7CE /* EventSettingHeaderFotterView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EventSettingHeaderFotterView.swift; sourceTree = "<group>"; };
@@ -202,6 +204,14 @@
 			name = Frameworks;
 			sourceTree = "<group>";
 		};
+		E559EC8E2758A1AA00686DD0 /* GuestInputSettign */ = {
+			isa = PBXGroup;
+			children = (
+				E559EC8F2758A1EF00686DD0 /* GuestInputSettingViewController.swift */,
+			);
+			path = GuestInputSettign;
+			sourceTree = "<group>";
+		};
 		E55DA4F1273FD5DD00CBAE45 /* Extensions */ = {
 			isa = PBXGroup;
 			children = (
@@ -253,12 +263,12 @@
 			path = EventMenu;
 			sourceTree = "<group>";
 		};
-		E596274E2749DA180093E7CE /* EventSetting */ = {
+		E596274E2749DA180093E7CE /* EventInfo */ = {
 			isa = PBXGroup;
 			children = (
-				E596274F2749DA320093E7CE /* EventSettingViewController.swift */,
+				E596274F2749DA320093E7CE /* EventInfoViewController.swift */,
 			);
-			path = EventSetting;
+			path = EventInfo;
 			sourceTree = "<group>";
 		};
 		E59627512749DA530093E7CE /* EventSetting */ = {
@@ -412,9 +422,10 @@
 		E5E45475273D3F3800F22729 /* Controller */ = {
 			isa = PBXGroup;
 			children = (
+				E559EC8E2758A1AA00686DD0 /* GuestInputSettign */,
 				E596275F2749DB480093E7CE /* GuestCard */,
 				E5E45479273D400300F22729 /* EventList */,
-				E596274E2749DA180093E7CE /* EventSetting */,
+				E596274E2749DA180093E7CE /* EventInfo */,
 				E59627462749D8F50093E7CE /* EventMenu */,
 				E596273F2749D3C40093E7CE /* SideMenu */,
 				E55DA4FE273FD79A00CBAE45 /* SignIn */,
@@ -742,7 +753,7 @@
 				E5ECB9A1273F7D800033513E /* SceneDelegate.swift in Sources */,
 				E55DA4F3273FD5EC00CBAE45 /* Anchor.swift in Sources */,
 				E59627612749DB700093E7CE /* UserSettingViewController.swift in Sources */,
-				E59627502749DA320093E7CE /* EventSettingViewController.swift in Sources */,
+				E59627502749DA320093E7CE /* EventInfoViewController.swift in Sources */,
 				E59627672749DC030093E7CE /* SideMenuPresentationController.swift in Sources */,
 				E59627652749DBCE0093E7CE /* TermsOfUseViewController.swift in Sources */,
 				E5794D8B274F301E002A0822 /* GuestCardTableViewCell.swift in Sources */,
@@ -751,6 +762,7 @@
 				E5C201B3274A0C9000FBD2CE /* CardHeaderView.swift in Sources */,
 				E5C201BA274A2F8F00FBD2CE /* UITextField.swift in Sources */,
 				E5ECB99B273F79C10033513E /* Relation.swift in Sources */,
+				E559EC902758A1EF00686DD0 /* GuestInputSettingViewController.swift in Sources */,
 				E59627552749DA830093E7CE /* EventSettingTableViewCell.swift in Sources */,
 				E59627692749DC690093E7CE /* GuestListViewController.swift in Sources */,
 				E596274A2749D9470093E7CE /* SelectGuests.swift in Sources */,

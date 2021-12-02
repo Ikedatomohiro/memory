@@ -11,15 +11,16 @@ import FirebaseFirestore
 class EventMenuViewController: UIViewController {
     
     fileprivate let event: Event
-    fileprivate var guests: [Guest]       = []
-    fileprivate let moveGuestCardButton   = UIButton()
-    fileprivate let moveGuestListButton   = UIButton()
-    fileprivate let moveSettingButton     = UIButton()
-    fileprivate var retuals: [Retual]     = []
-    fileprivate var relations: [Relation] = []
-    fileprivate var groups: [Group]       = []
-    let selectGuests                      = SelectGuests()
-    lazy var eventInfoAreaView            = EventInfoAreaView(event: event, guests: guests, frame: .zero)
+    fileprivate var guests: [Guest]        = []
+    fileprivate let moveGuestCardButton    = UIButton()
+    fileprivate let moveGuestListButton    = UIButton()
+    fileprivate let moveEventInfoButton    = UIButton()
+    fileprivate let moveInputSettingButton = UIButton()
+    fileprivate var retuals: [Retual]      = []
+    fileprivate var relations: [Relation]  = []
+    fileprivate var groups: [Group]        = []
+    let selectGuests                       = SelectGuests()
+    lazy var eventInfoAreaView             = EventInfoAreaView(event: event, guests: guests, frame: .zero)
     
     init(event: Event) {
         self.event = event
@@ -36,7 +37,8 @@ class EventMenuViewController: UIViewController {
         setupEventInfoArea()
         setupMoveGuestCardButton()
         setupMoveGuestListButton()
-        setupMoveSettingButton()
+        setupMoveEventInfoButton()
+        setupInputSettingButton()
         setBackButtonTitle()
     }
     
@@ -47,7 +49,7 @@ class EventMenuViewController: UIViewController {
     //MARK:- Function
     fileprivate func setupBase() {
         navigationItem.title = event.eventName
-        self.getRetualRelationGroupData()
+        self.getSelectListData()
         self.view.backgroundColor = .white
     }
     
@@ -64,52 +66,75 @@ class EventMenuViewController: UIViewController {
         }
     }
     
+    /// 参加者入力欄への遷移ボタン
     fileprivate func setupMoveGuestCardButton() {
         view.addSubview(moveGuestCardButton)
         buttonCustomise(button: moveGuestCardButton, text: "参加者入力")
         moveGuestCardButton.anchor(top: eventInfoAreaView.bottomAnchor, leading: view.layoutMarginsGuide.leadingAnchor, bottom: nil, trailing: nil, padding: .init(top: 50, left: 0, bottom: 0, right: 0), size: .init(width: 150, height: 50))
-        moveGuestCardButton.addTarget(self, action: #selector(showGuestCard), for: .touchUpInside)
+        moveGuestCardButton.accessibilityIdentifier = "guestInput"
+        moveGuestCardButton.addTarget(self, action: #selector(moveViewController(_:)), for: .touchUpInside)
     }
     
+    /// 参加者一覧への遷移ボタン
     fileprivate func setupMoveGuestListButton() {
         view.addSubview(moveGuestListButton)
         buttonCustomise(button: moveGuestListButton, text: "参加者一覧")
         moveGuestListButton.anchor(top: moveGuestCardButton.bottomAnchor, leading: view.layoutMarginsGuide.leadingAnchor, bottom: nil, trailing: nil, padding: .init(top: 20, left: 0, bottom: 0, right: 0), size: .init(width: 150, height: 50))
-        moveGuestListButton.addTarget(self, action: #selector(showGuestList), for: .touchUpInside)
+        moveGuestListButton.accessibilityIdentifier = "guestList"
+        moveGuestListButton.addTarget(self, action: #selector(moveViewController(_:)), for: .touchUpInside)
     }
     
-    fileprivate func setupMoveSettingButton() {
-        view.addSubview(moveSettingButton)
-        buttonCustomise(button: moveSettingButton, text: "設定")
-        moveSettingButton.anchor(top: moveGuestListButton.bottomAnchor, leading: view.layoutMarginsGuide.leadingAnchor, bottom: nil, trailing: nil, padding: .init(top: 20, left: 0, bottom: 0, right: 0), size: .init(width: 150, height: 50))
-        moveSettingButton.addTarget(self, action: #selector(showSetting), for: .touchUpInside)
+    /// イベント情報への遷移ボタン
+    fileprivate func setupMoveEventInfoButton() {
+        view.addSubview(moveEventInfoButton)
+        buttonCustomise(button: moveEventInfoButton, text: "イベント情報")
+        moveEventInfoButton.anchor(top: moveGuestListButton.bottomAnchor, leading: view.layoutMarginsGuide.leadingAnchor, bottom: nil, trailing: nil, padding: .init(top: 20, left: 0, bottom: 0, right: 0), size: .init(width: 150, height: 50))
+        moveEventInfoButton.accessibilityIdentifier = "eventInfo"
+        moveEventInfoButton.addTarget(self, action: #selector(moveViewController(_:)) ,for: .touchUpInside)
     }
     
+    /// 入力項目設定画面への遷移ボタン
+    fileprivate func setupInputSettingButton() {
+        view.addSubview(moveInputSettingButton)
+        buttonCustomise(button: moveInputSettingButton, text: "入力項目設定")
+        moveInputSettingButton.anchor(top: moveEventInfoButton.bottomAnchor, leading: view.layoutMarginsGuide.leadingAnchor, bottom: nil, trailing: nil, padding: .init(top: 20, left: 0, bottom: 0, right: 0), size: .init(width: 150, height: 50))
+        moveInputSettingButton.accessibilityIdentifier = "guestInputSetting"
+        moveInputSettingButton.addTarget(self, action: #selector(moveViewController(_:)) ,for: .touchUpInside)
+    }
+    
+    /// ボタンのカスタマイズ
     fileprivate func buttonCustomise(button: UIButton, text: String) {
         button.setTitle(text, for: .normal)
         button.backgroundColor = green
         button.titleLabel?.font = .systemFont(ofSize: 24)
         button.layer.cornerRadius = 5
     }
-    
-    @objc private func showGuestCard() {
-        let defaultGuest = Guest("", retuals, relations, groups)
-        let guestCardVC = GuestCardViewController(event: event, guest: defaultGuest, retuals: retuals, relations: relations, groups: groups)
-        guestCardVC.modalPresentationStyle = .fullScreen
-        self.navigationController?.pushViewController(guestCardVC, animated: true)
-    }
 
-    
-    @objc private func showGuestList() {
-        let guestListVC = GuestListViewController(event, retuals,guests)
-        guestListVC.modalPresentationStyle = .fullScreen
-        self.navigationController?.pushViewController(guestListVC, animated: true)
-    }
-    
-    @objc private func showSetting() {
-        let settingVC = EventSettingViewController(event: event)
-        settingVC.modalPresentationStyle = .fullScreen
-        self.navigationController?.pushViewController(settingVC, animated: true)
+    /// 各画面へ遷移
+    @objc fileprivate func moveViewController(_ sender: UIButton)
+    {
+        var vc = UIViewController()
+        let identifire = sender.accessibilityIdentifier
+        switch identifire {
+        case "guestInput":
+            let defaultGuest = Guest("", retuals, relations, groups)
+            vc = GuestCardViewController(event: event, guest: defaultGuest, retuals: retuals, relations: relations, groups: groups)
+            break
+        case "guestList":
+            vc = GuestListViewController(event, retuals,guests)
+            break
+        case "eventInfo":
+            vc = EventInfoViewController(event: event)
+            break
+        case "guestInputSetting":
+            vc = GuestInputSettingViewController()
+            break
+        case .none: break
+        case .some(_):
+            break
+        }
+        vc.modalPresentationStyle = .fullScreen
+        self.navigationController?.pushViewController(vc, animated: true)
     }
     
     // 戻るボタンの名称をセット
@@ -119,6 +144,7 @@ class EventMenuViewController: UIViewController {
         self.navigationItem.backBarButtonItem = backBarButtonItem
     }
     
+    /// 儀式リストを取得
     fileprivate func getRetuals(eventId: String) -> [Retual] {
         Retual.collectionRef(eventId: eventId).order(by: "number").getDocuments() { (querySnapshot, error) in
             guard let documents = querySnapshot?.documents else { return }
@@ -130,6 +156,7 @@ class EventMenuViewController: UIViewController {
         return self.retuals
     }
     
+    /// ご関係リストを取得
     fileprivate func getRelations(eventId: String) -> [Relation] {
         Relation.collectionRef(eventId: eventId).order(by: "number").getDocuments { (querySnapshot, error) in
             guard let documents = querySnapshot?.documents else { return }
@@ -141,6 +168,7 @@ class EventMenuViewController: UIViewController {
         return self.relations
     }
     
+    /// 所属団体リストを取得
     fileprivate func getGroups(eventId: String) -> [Group] {
         Group.collectionRef(eventId: eventId).order(by: "number").getDocuments { (querySnapshot, error) in
             guard let documents = querySnapshot?.documents else { return }
@@ -151,8 +179,9 @@ class EventMenuViewController: UIViewController {
         }
         return self.groups
     }
-    
-    fileprivate func getRetualRelationGroupData() {
+
+    /// 各選択ボタンリストを取得
+    fileprivate func getSelectListData() {
         self.retuals = getRetuals(eventId: event.eventId)
         self.relations = getRelations(eventId: event.eventId)
         self.groups = getGroups(eventId: event.eventId)

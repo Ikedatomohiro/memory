@@ -16,7 +16,7 @@ extension EventSettingDelegate {
     func sendTextToController<T>(inputView: T) {}
 }
 
-class EventSettingViewController: UIViewController {
+class EventInfoViewController: UIViewController {
     var event: Event
     lazy var eventSettingTableView = EventSettingTableView(event: event, frame: .zero, style: .plain)
     
@@ -60,7 +60,7 @@ class EventSettingViewController: UIViewController {
 }
 
 // MARK:- Extensions
-extension EventSettingViewController: EventSettingDelegate {
+extension EventInfoViewController: EventSettingDelegate {
     func sendTextToController<T>(inputView: T) {
         if type(of: inputView) == UITextField.self {
             guard let textField = inputView as? UITextField else { return }
