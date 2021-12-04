@@ -77,6 +77,7 @@ class GuestCardTableViewCell: UITableViewCell {
         textField.layer.cornerRadius = 5
         textField.backgroundColor = inputAreaColor
         textField.accessibilityIdentifier = cellItem.rawValue
+        self.textField.addTarget(self, action: #selector(self.textFieldDidChange(_:)), for: UIControl.Event.editingChanged)
     }
     
     /// アンダーラインをつける
@@ -87,8 +88,10 @@ class GuestCardTableViewCell: UITableViewCell {
         underLine.backgroundColor = .black
     }
     
-    
-
+    /// 変更するたびに呼び出す
+    @objc func textFieldDidChange(_ textFiled: UITextField) {
+        pass(inputView: textField)
+    }
 }
 
 // MARK: - Extensions
@@ -100,7 +103,11 @@ extension GuestCardTableViewCell: UITextFieldDelegate {
     // テキストフィールドの編集が終わった時に呼び出されるデリゲートメソッド
     internal func textFieldDidEndEditing(_ textField: UITextField) {
         textField.backgroundColor = inputAreaColor
-        pass(inputView: textField)
+    }
+    
+    func textFieldShouldEndEditing(_ textField: UITextField) -> Bool {
+        
+        return true
     }
     
     // 画面をタッチするとキーボードが閉じる処理

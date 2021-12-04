@@ -229,27 +229,54 @@ class GuestCardViewController: UIViewController {
     @objc func registGuest() {
         // ボタンを動かす
         registButton.animateView(registButton)
-        guest.guestName = guestNameView.textField.text ?? ""
-        guest.companyName = companyNameView.textField.text ?? ""
         let defaultGuest = Guest("", retuals, relations, groups)
-        
+        // どの項目も入力されていなければ登録しない
         guard guest != defaultGuest else { return }
+        // Firestoreに登録
         Guest.registGuest(guest, event.eventId)
         // TODO: -　登録完了アラート
         
+        //  入力欄をリセットする
         resetGuest()
     }
     
     fileprivate func resetGuest() {
-        guestNameView.textField.text = ""
-        companyNameView.textField.text = ""
+        
+
     }
     
     /// テキストフィールドから受け取った情報をGuestにセット
     fileprivate func setGuestInfo<Element>(inputView: Element) {
+        if type(of: inputView) != UITextField.self { return }
         
+        let textField = inputView as! UITextField
+        let identifier = textField.accessibilityIdentifier
+        let inputContent = GuestInput.CellHeadLine.self
+        // 入ってきた情報により保存する情報を振り分ける
+        switch identifier {
+        case inputContent.guestName.rawValue:
+            guest.guestName = textField.text ?? ""
+            break
+        case inputContent.companyName.rawValue:
+            guest.companyName = textField.text ?? ""
+            break
+        case inputContent.zipCode.rawValue:
+            guest.zipCode = textField.text ?? ""
+            break
+        case inputContent.address.rawValue:
+            guest.address = textField.text ?? ""
+            break
+        case inputContent.telNumber.rawValue:
+            guest.telNumber = textField.text ?? ""
+            break
+        case inputContent.description.rawValue:
+            guest.description = textField.text ?? ""
+            break
+
+        default:
+            break
+        }
     }
-    
 }
 
 // MARK: - Extensions

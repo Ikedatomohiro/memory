@@ -20,7 +20,7 @@
 		E55DA500273FD7AC00CBAE45 /* SignInViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E55DA4FF273FD7AC00CBAE45 /* SignInViewController.swift */; };
 		E5794D89274F2EC1002A0822 /* GuestCardTableView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E5794D88274F2EC1002A0822 /* GuestCardTableView.swift */; };
 		E5794D8B274F301E002A0822 /* GuestCardTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = E5794D8A274F301E002A0822 /* GuestCardTableViewCell.swift */; };
-		E5794D8D274F47D2002A0822 /* GuestInputItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = E5794D8C274F47D2002A0822 /* GuestInputItem.swift */; };
+		E5794D8D274F47D2002A0822 /* GuestInput.swift in Sources */ = {isa = PBXBuildFile; fileRef = E5794D8C274F47D2002A0822 /* GuestInput.swift */; };
 		E5823138274C77090007AA9B /* ZipCodeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E5823137274C77090007AA9B /* ZipCodeView.swift */; };
 		E582313A274C77170007AA9B /* AddressView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E5823139274C77170007AA9B /* AddressView.swift */; };
 		E582313C274C77270007AA9B /* TelNumberView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E582313B274C77270007AA9B /* TelNumberView.swift */; };
@@ -108,7 +108,7 @@
 		E55DA4FF273FD7AC00CBAE45 /* SignInViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SignInViewController.swift; sourceTree = "<group>"; };
 		E5794D88274F2EC1002A0822 /* GuestCardTableView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GuestCardTableView.swift; sourceTree = "<group>"; };
 		E5794D8A274F301E002A0822 /* GuestCardTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GuestCardTableViewCell.swift; sourceTree = "<group>"; };
-		E5794D8C274F47D2002A0822 /* GuestInputItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GuestInputItem.swift; sourceTree = "<group>"; };
+		E5794D8C274F47D2002A0822 /* GuestInput.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GuestInput.swift; sourceTree = "<group>"; };
 		E5823137274C77090007AA9B /* ZipCodeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ZipCodeView.swift; sourceTree = "<group>"; };
 		E5823139274C77170007AA9B /* AddressView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddressView.swift; sourceTree = "<group>"; };
 		E582313B274C77270007AA9B /* TelNumberView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TelNumberView.swift; sourceTree = "<group>"; };
@@ -396,7 +396,7 @@
 			isa = PBXGroup;
 			children = (
 				E5E4547F273D40EF00F22729 /* Event.swift */,
-				E5794D8C274F47D2002A0822 /* GuestInputItem.swift */,
+				E5794D8C274F47D2002A0822 /* GuestInput.swift */,
 				E5E45481273D416B00F22729 /* Guest.swift */,
 				E5ECB998273F79A50033513E /* Retual.swift */,
 				E5ECB99A273F79C10033513E /* Relation.swift */,
@@ -748,7 +748,7 @@
 				E59627632749DBB30093E7CE /* PrivacyPolicyViewController.swift in Sources */,
 				E55DA500273FD7AC00CBAE45 /* SignInViewController.swift in Sources */,
 				E5ECB99F273F7C190033513E /* Constants.swift in Sources */,
-				E5794D8D274F47D2002A0822 /* GuestInputItem.swift in Sources */,
+				E5794D8D274F47D2002A0822 /* GuestInput.swift in Sources */,
 				E5E303C2273CED130045C59B /* AppDelegate.swift in Sources */,
 				E5ECB9A1273F7D800033513E /* SceneDelegate.swift in Sources */,
 				E55DA4F3273FD5EC00CBAE45 /* Anchor.swift in Sources */,
