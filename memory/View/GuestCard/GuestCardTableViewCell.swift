@@ -25,29 +25,22 @@ class GuestCardTableViewCell: UITableViewCell {
     }
     
     /// セルをセットする
-    func setupCell(cellItem: GuestInput.CellHeadLine, cellType: GuestInput.CellType, headlineText: String) {
+    func setupCell(cellItem: GuestInput.CellHeadLine, cellType: GuestInput.CellType, headlineText: String, textBody: String) {
 
         switch cellType {
         case .nomal:
-            setupNomalCell(cellItem: cellItem, headlineText: headlineText)
+            setupNomalCell(cellItem: cellItem, headlineText: headlineText, textBody: textBody)
         case .zipCode:
             setupZipCodeCell(cellItem: cellItem, headlineText: headlineText)
         case .telNumber:
             setupTexNumberCell(cellItem: cellItem, headlineText: headlineText)
         }
-        // contentviewにしないと、Cellの下になって、記入できない。
-//        contentView.addSubview(view)
-//        view.anchor(top: topAnchor, leading: leadingAnchor, bottom: bottomAnchor, trailing: trailingAnchor)
-//        view.instanceStruct.passGuestItemDelegate = self
-//        view.extensionStruct.init(passGuestItemDelegate: <#T##PassGuestItemDelegate?#>)
-//        view.passGuestItemDelegate = self
     }
     
-    
     /// nomalのセルをセット
-    fileprivate func setupNomalCell(cellItem: GuestInput.CellHeadLine, headlineText: String) {
+    fileprivate func setupNomalCell(cellItem: GuestInput.CellHeadLine, headlineText: String, textBody: String) {
         setupLabel(headlineText: headlineText)
-        setupTextField(cellItem: cellItem)
+        setupTextField(cellItem: cellItem, textBody: textBody)
         setUnderLine()
     }
     
@@ -70,13 +63,14 @@ class GuestCardTableViewCell: UITableViewCell {
     }
     
     /// 入力欄
-    fileprivate func setupTextField(cellItem: GuestInput.CellHeadLine) {
+    fileprivate func setupTextField(cellItem: GuestInput.CellHeadLine, textBody: String) {
         contentView.addSubview(textField)
         textField.anchor(top: topAnchor, leading: titleLabel.trailingAnchor, bottom: layoutMarginsGuide.bottomAnchor, trailing: layoutMarginsGuide.trailingAnchor)
         textField.font = UIFont.systemFont(ofSize: 40)
         textField.layer.cornerRadius = 5
         textField.backgroundColor = inputAreaColor
         textField.accessibilityIdentifier = cellItem.rawValue
+        textField.text = textBody
         self.textField.addTarget(self, action: #selector(self.textFieldDidChange(_:)), for: UIControl.Event.editingChanged)
     }
     

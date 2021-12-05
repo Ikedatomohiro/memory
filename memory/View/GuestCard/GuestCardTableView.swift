@@ -7,17 +7,16 @@
 
 import UIKit
 
-
-
-
 class GuestCardTableView: UITableView {
     
+    var guest: Guest
     fileprivate var cellItems: Array<GuestInput.CellHeadLine>
     weak var passGuestItemDelegate: PassGuestItemDelegate?
     
     
-    override init(frame: CGRect, style: UITableView.Style) {
+    init(guest: Guest, frame: CGRect, style: UITableView.Style) {
         self.cellItems = GuestInput.CellHeadLine.cellHeadLineList
+        self.guest = guest
         super.init(frame: .zero, style: style)
         // 区切り線を消す
         self.separatorStyle = .none
@@ -27,6 +26,18 @@ class GuestCardTableView: UITableView {
     
     required init?(coder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
+    }
+    
+    /// 参加者データをもとにリロードする
+    func reloadGuestdata(guest: Guest) {
+        self.guest = guest
+        self.reloadData()
+    }
+    
+    /// 参加者情報をリセットしてリロード
+    func resetInputData(guest: Guest) {
+        self.guest = guest
+        self.reloadData()
     }
     
 }
@@ -60,34 +71,36 @@ extension GuestCardTableView: UITableViewDataSource {
         let cell = GuestCardTableViewCell()
         var cellType: GuestInput.CellType?
         var headlineText: String = ""
+        var textBody: String = ""
         switch cellItem {
         case .guestName:
             cellType = GuestInput.CellType.nomal
             headlineText = "ご芳名"
+            textBody = guest.guestName
             break
         case .companyName:
             cellType = GuestInput.CellType.nomal
             headlineText = "会社名"
+            textBody = guest.companyName
             break
         case .zipCode:
             headlineText = "郵便番号"
-
-            print("ゆうびん")
+            textBody = guest.zipCode
             break
         case .address:
             headlineText = "住所"
-            print("じゅうしょ")
+            textBody = guest.address
             break
         case .telNumber:
             headlineText = "電話番号"
-            print("でんわ")
+            textBody = guest.telNumber
             break
         case .description:
             headlineText = "備考"
-            //            vc = InputGuestPlainView(frame: .zero, labelText: "備考", identifire: cellItem.rawValue)
+            textBody = guest.description
             break
         }
-        cell.setupCell(cellItem: cellItem, cellType: cellType ?? .nomal, headlineText: headlineText)
+        cell.setupCell(cellItem: cellItem, cellType: cellType ?? .nomal, headlineText: headlineText, textBody: textBody)
         cell.passGuestItemDelegate = self
         return cell
     }

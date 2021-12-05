@@ -6,9 +6,8 @@
 //
 
 import UIKit
-import FirebaseFirestore
-import FirebaseStorage
-import PencilKit
+//import FirebaseFirestore
+//import FirebaseStorage
 
 protocol GuestCardUpdateDelegate: AnyObject {
     func update(guest: Guest, updateGuestParam: Set<String>)
@@ -27,22 +26,22 @@ class GuestCardViewController: UIViewController {
     var relations: [Relation]
     var groups: [Group]
     var index: Int?
-    lazy var guestCardTableView = GuestCardTableView(frame: .zero, style: .plain)
+    lazy var guestCardTableView = GuestCardTableView(guest: guest, frame: .zero, style: .plain)
     
     weak var guestupdateDelegate: GuestCardUpdateDelegate?
     
     // UIView
     fileprivate let backGroundFrame    = UIView()
     fileprivate let cardHeaderView     = CardHeaderView()
-    lazy var guestNameView = InputGuestPlainView(frame: .zero, labelText: "御芳名", identifire: "guestName")
-    lazy var companyNameView = InputGuestPlainView(frame: .zero, labelText: "会社名", identifire: "companyName")
+//    lazy var guestNameView = InputGuestPlainView(frame: .zero, labelText: "御芳名", identifire: "guestName")
+//    lazy var companyNameView = InputGuestPlainView(frame: .zero, labelText: "会社名", identifire: "companyName")
     //    fileprivate let companyNameView    = CompanyNameView()
     //    fileprivate let addressView        = AddressView()
     //    fileprivate let descriptionView    = DescriptionView()
     fileprivate let backToMenuButton   = UIButton()
     fileprivate var captureImage       = UIImage()
     var updateGuestParam = Set<String>()
-    fileprivate let storage            = Storage.storage().reference(forURL: Keys.firestoreStorageUrl)
+//    fileprivate let storage            = Storage.storage().reference(forURL: Keys.firestoreStorageUrl)
     fileprivate let registButton       = UIButton()
     //    lazy var retualCollectionView = RetualCollectionView(guest, retuals, frame: CGRect.zero)
     //    lazy var selectRelationView = SelectRelationView(guest, relations, relationCollectionView, frame: CGRect.zero)
@@ -148,23 +147,23 @@ class GuestCardViewController: UIViewController {
             
         }) { UIViewControllerTransitionCoordinatorContext in
             
-            self.guestNameView.setupLabel(width: Int(size.width))
+//            self.guestNameView.setupLabel(width: Int(size.width))
         }
     }
     
-    fileprivate func setupGuestNameView() {
-        view.addSubview(guestNameView)
-        guestNameView.setupView()
-        guestNameView.anchor(top: cardHeaderView.bottomAnchor, leading: self.view.layoutMarginsGuide.leadingAnchor, bottom: nil, trailing: self.view.layoutMarginsGuide.trailingAnchor, size: .init(width: .zero, height: screenSize.height / 10))
-        guestNameView.passGuestItemDelegate = self
-    }
-    
-    fileprivate func setupCompanyNameView() {
-        view.addSubview(companyNameView)
-        companyNameView.setupView()
-        companyNameView.anchor(top: guestNameView.bottomAnchor, leading: self.view.layoutMarginsGuide.leadingAnchor, bottom: nil, trailing: self.view.layoutMarginsGuide.trailingAnchor, size: .init(width: .zero, height: screenSize.height / 10))
-        companyNameView.passGuestItemDelegate = self
-    }
+//    fileprivate func setupGuestNameView() {
+//        view.addSubview(guestNameView)
+//        guestNameView.setupView()
+//        guestNameView.anchor(top: cardHeaderView.bottomAnchor, leading: self.view.layoutMarginsGuide.leadingAnchor, bottom: nil, trailing: self.view.layoutMarginsGuide.trailingAnchor, size: .init(width: .zero, height: screenSize.height / 10))
+//        guestNameView.passGuestItemDelegate = self
+//    }
+//    
+//    fileprivate func setupCompanyNameView() {
+//        view.addSubview(companyNameView)
+//        companyNameView.setupView()
+//        companyNameView.anchor(top: guestNameView.bottomAnchor, leading: self.view.layoutMarginsGuide.leadingAnchor, bottom: nil, trailing: self.view.layoutMarginsGuide.trailingAnchor, size: .init(width: .zero, height: screenSize.height / 10))
+//        companyNameView.passGuestItemDelegate = self
+//    }
     //
     //    fileprivate func setupAddressView() {
     //        view.addSubview(addressView)
@@ -232,14 +231,12 @@ class GuestCardViewController: UIViewController {
         Guest.registGuest(guest, event.eventId)
         // TODO: -　登録完了アラート
         
-        //  入力欄をリセットする
-        resetGuest()
+        // 入力欄をリセットする
+        self.guest = defaultGuest
+        guestCardTableView.resetInputData(guest: defaultGuest)
     }
     
-    fileprivate func resetGuest() {
-        
 
-    }
     
     /// テキストフィールドから受け取った情報をGuestにセット
     fileprivate func setGuestInfo<Element>(inputView: Element) {
@@ -280,8 +277,7 @@ class GuestCardViewController: UIViewController {
         let addressObj = GetAddress.self
         addressObj.callZipCloudApi(zipcode: zipcode) { address in
             self.guest.address = address
-            print(address)
-//            return
+            self.guestCardTableView.reloadGuestdata(guest: self.guest)
         }
     }
 }
