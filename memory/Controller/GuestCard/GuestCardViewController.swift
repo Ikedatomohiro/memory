@@ -18,10 +18,6 @@ protocol PassGuestItemDelegate: AnyObject {
     func pass<Element>(inputView: Element)
 }
 
-protocol GuestItemUpdateDelegate: AnyObject {
-    func update<T>(inputView: T)
-}
-
 class GuestCardViewController: UIViewController {
 
     
@@ -262,6 +258,7 @@ class GuestCardViewController: UIViewController {
             break
         case inputContent.zipCode.rawValue:
             guest.zipCode = textField.text ?? ""
+            getAdress(zipcode: guest.zipCode)
             break
         case inputContent.address.rawValue:
             guest.address = textField.text ?? ""
@@ -277,36 +274,20 @@ class GuestCardViewController: UIViewController {
             break
         }
     }
+    
+    /// 郵便番号から住所を取得する
+    fileprivate func getAdress(zipcode: String) {
+        let addressObj = GetAddress.self
+        addressObj.callZipCloudApi(zipcode: zipcode) { address in
+            self.guest.address = address
+            print(address)
+//            return
+        }
+    }
 }
 
 // MARK: - Extensions
-extension GuestCardViewController: GuestItemUpdateDelegate {
-    func update<T>(inputView: T) {
-        guard let identifier = (inputView as! UIView).accessibilityIdentifier else { return }
-        updateGuestParam.insert(identifier)
-        // 各変更項目に対して値を更新する
-        if identifier == "guestName" {
-            guest.guestName = guestNameView.textField.text ?? ""
-        } else if identifier == "companyName" {
-            guest.companyName = companyNameView.textField.text ?? ""
-        } else if identifier == "zipCode" {
-            guest.guestName = guestNameView.textField.text ?? ""
-        } else if identifier == "address" {
-            guest.guestName = guestNameView.textField.text ?? ""
-        } else if identifier == "telNumber" {
-            guest.guestName = guestNameView.textField.text ?? ""
-        } else if identifier == "retuals" {
-            //            guest.retuals = retualCollectionView.guest.retuals
-        } else if identifier == "groups" {
-            //            guest.groups = groupCollectionView.guest.groups
-        } else if identifier == "relations" {
-            //            guest.relations = relationCollectionView.guest.relations
-        } else if identifier == "description" {
-            guest.guestName = guestNameView.textField.text ?? ""
-        }
-//        guestupdateDelegate?.update(guest: guest, updateGuestParam: updateGuestParam)
-    }
-}
+
 extension GuestCardViewController: PassGuestItemDelegate {
     func pass<Element>(inputView: Element) {
         self.setGuestInfo(inputView: inputView)

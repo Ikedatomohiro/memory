@@ -56,6 +56,7 @@
 		E5C201B3274A0C9000FBD2CE /* CardHeaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E5C201B2274A0C9000FBD2CE /* CardHeaderView.swift */; };
 		E5C201B5274A0CC300FBD2CE /* GuestCardViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E5C201B4274A0CC300FBD2CE /* GuestCardViewController.swift */; };
 		E5C201BA274A2F8F00FBD2CE /* UITextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = E5C201B9274A2F8F00FBD2CE /* UITextField.swift */; };
+		E5CF0B1C275BB2F600258172 /* Address.swift in Sources */ = {isa = PBXBuildFile; fileRef = E5CF0B1B275BB2F600258172 /* Address.swift */; };
 		E5E303C2273CED130045C59B /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = E5E303C1273CED130045C59B /* AppDelegate.swift */; };
 		E5E303CE273CED140045C59B /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = E5E303CC273CED140045C59B /* LaunchScreen.storyboard */; };
 		E5E303D9273CED140045C59B /* memoryTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = E5E303D8273CED140045C59B /* memoryTests.swift */; };
@@ -145,6 +146,7 @@
 		E5C201B2274A0C9000FBD2CE /* CardHeaderView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CardHeaderView.swift; sourceTree = "<group>"; };
 		E5C201B4274A0CC300FBD2CE /* GuestCardViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GuestCardViewController.swift; sourceTree = "<group>"; };
 		E5C201B9274A2F8F00FBD2CE /* UITextField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UITextField.swift; sourceTree = "<group>"; };
+		E5CF0B1B275BB2F600258172 /* Address.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Address.swift; sourceTree = "<group>"; };
 		E5E303BE273CED130045C59B /* memory.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = memory.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		E5E303C1273CED130045C59B /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		E5E303CD273CED140045C59B /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
@@ -402,6 +404,7 @@
 				E5ECB99A273F79C10033513E /* Relation.swift */,
 				E5ECB99C273F7A3C0033513E /* Group.swift */,
 				E59627492749D9470093E7CE /* SelectGuests.swift */,
+				E5CF0B1B275BB2F600258172 /* Address.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -726,6 +729,7 @@
 				E5C201B5274A0CC300FBD2CE /* GuestCardViewController.swift in Sources */,
 				E596275A2749DAE60093E7CE /* SideMenuView.swift in Sources */,
 				E59627742749DD2F0093E7CE /* CsvList.swift in Sources */,
+				E5CF0B1C275BB2F600258172 /* Address.swift in Sources */,
 				E59627572749DAA00093E7CE /* EventSettingHeaderFotterView.swift in Sources */,
 				E582313C274C77270007AA9B /* TelNumberView.swift in Sources */,
 				E55DA4F7273FD61F00CBAE45 /* UIView.swift in Sources */,

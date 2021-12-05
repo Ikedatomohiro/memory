@@ -12,6 +12,7 @@ target 'memory' do
 	pod 'Firebase/Storage'
 	pod 'GoogleSignIn'
 	pod 'Firebase/DynamicLinks'
+	pod 'Alamofire'
 
   target 'memoryTests' do
     inherit! :search_paths
