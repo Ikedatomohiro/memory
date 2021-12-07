@@ -63,7 +63,19 @@ extension GuestCardTableView: UITableViewDataSource {
     
     // リスト高さ
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-        return screenSize.height / 10
+        
+        let cellList = GuestInput.CellHeadLine.cellHeadLineList
+        var height: CGFloat
+        switch cellList[indexPath.section] {
+        case .zipCode:
+            height = screenSize.height / 15
+            break
+        
+        default:
+            height = screenSize.height / 10
+            break
+        }
+        return height
     }
     
     func setCell(cellItem: GuestInput.CellHeadLine) -> UITableViewCell {
@@ -72,31 +84,47 @@ extension GuestCardTableView: UITableViewDataSource {
         var headlineText: String = ""
         var textBody: String = ""
         switch cellItem {
+        case .retual:
+            
+            break
         case .guestName:
             cellType = GuestInput.CellType.nomal
             headlineText = "ご芳名"
             textBody = guest.guestName
+            cellType = .nomal
             break
         case .companyName:
             cellType = GuestInput.CellType.nomal
             headlineText = "会社名"
             textBody = guest.companyName
+            cellType = .nomal
             break
         case .zipCode:
             headlineText = "郵便番号"
             textBody = guest.zipCode
+            cellType = .zipCode
             break
         case .address:
             headlineText = "住所"
             textBody = guest.address
+            cellType = .nomal
             break
         case .telNumber:
             headlineText = "電話番号"
             textBody = guest.telNumber
+            cellType = .nomal
             break
         case .description:
             headlineText = "備考"
             textBody = guest.description
+            cellType = .nomal
+            break
+
+        case .relation:
+            
+            break
+        case .group:
+            
             break
         }
         cell.setupCell(cellItem: cellItem, cellType: cellType ?? .nomal, headlineText: headlineText, textBody: textBody)

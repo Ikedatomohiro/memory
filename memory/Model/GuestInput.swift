@@ -18,12 +18,15 @@ struct GuestInput {
     }
     
     enum CellHeadLine: String, CaseIterable {
+        case retual      = "retual"
         case guestName   = "guestName"
         case companyName = "companyName"
-        case zipCode     = "zipCode"
+        case zipCode     = "zipcode"
         case address     = "address"
         case telNumber   = "telNumber"
         case description = "description"
+        case relation    = "relation"
+        case group       = "group"
         
         static let cellHeadLineList = CellHeadLine.allCases.map({ $0 })
     }

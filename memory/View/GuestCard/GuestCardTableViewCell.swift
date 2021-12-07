@@ -31,7 +31,7 @@ class GuestCardTableViewCell: UITableViewCell {
         case .nomal:
             setupNomalCell(cellItem: cellItem, headlineText: headlineText, textBody: textBody)
         case .zipCode:
-            setupZipCodeCell(cellItem: cellItem, headlineText: headlineText)
+            setupZipCodeCell(cellItem: cellItem, headlineText: headlineText, textBody: textBody)
         case .telNumber:
             setupTexNumberCell(cellItem: cellItem, headlineText: headlineText)
         }
@@ -39,52 +39,23 @@ class GuestCardTableViewCell: UITableViewCell {
     
     /// nomalのセルをセット
     fileprivate func setupNomalCell(cellItem: GuestInput.CellHeadLine, headlineText: String, textBody: String) {
-        setupLabel(headlineText: headlineText)
-        setupTextField(cellItem: cellItem, textBody: textBody)
-        setUnderLine()
+        let plainView = InputGuestPlainView(frame: frame, labelText: headlineText, identifire: cellItem.rawValue, textBody: textBody)
+        plainView.passGuestItemDelegate = self
+        contentView.addSubview(plainView)
+        plainView.anchor(top: layoutMarginsGuide.topAnchor, leading: layoutMarginsGuide.leadingAnchor, bottom: layoutMarginsGuide.bottomAnchor, trailing: layoutMarginsGuide.trailingAnchor, padding: .init(top: 5, left: 5, bottom: 0, right: 15), size: .init(width: screenSize.width / 6 , height: .zero))
     }
     
     /// 郵便番号用のセルをセット
-    fileprivate func setupZipCodeCell(cellItem: GuestInput.CellHeadLine, headlineText: String) {
-        
+    fileprivate func setupZipCodeCell(cellItem: GuestInput.CellHeadLine, headlineText: String, textBody: String) {
+        let zipcodeView = InputGuestZipcodeView(frame: frame, labelText: headlineText, identifire: cellItem.rawValue, textBody: textBody)
+        zipcodeView.passGuestItemDelegate = self
+        contentView.addSubview(zipcodeView)
+        zipcodeView.anchor(top: layoutMarginsGuide.topAnchor, leading: layoutMarginsGuide.leadingAnchor, bottom: bottomAnchor, trailing: layoutMarginsGuide.trailingAnchor, padding: .init(top: 5, left: 5, bottom: 0, right: 15), size: .init(width: screenSize.width / 6 , height: .zero))
     }
 
     /// 電話番号用のセルをセット
     fileprivate func setupTexNumberCell(cellItem: GuestInput.CellHeadLine, headlineText: String) {
         
-    }
-    
-    /// ラベル
-    func setupLabel(width: Int = Int(screenSize.width), headlineText: String) {
-        addSubview(titleLabel)
-        titleLabel.anchor(top: topAnchor, leading: layoutMarginsGuide.leadingAnchor, bottom: layoutMarginsGuide.bottomAnchor, trailing: nil, padding: .init(top: 5, left: 5, bottom: 0, right: 15), size: .init(width: width / 6 , height: .zero))
-        titleLabel.text = headlineText
-        titleLabel.font = .systemFont(ofSize: 24)
-    }
-    
-    /// 入力欄
-    fileprivate func setupTextField(cellItem: GuestInput.CellHeadLine, textBody: String) {
-        contentView.addSubview(textField)
-        textField.anchor(top: topAnchor, leading: titleLabel.trailingAnchor, bottom: layoutMarginsGuide.bottomAnchor, trailing: layoutMarginsGuide.trailingAnchor)
-        textField.font = UIFont.systemFont(ofSize: 40)
-        textField.layer.cornerRadius = 5
-        textField.backgroundColor = inputAreaColor
-        textField.accessibilityIdentifier = cellItem.rawValue
-        textField.text = textBody
-        self.textField.addTarget(self, action: #selector(self.textFieldDidChange(_:)), for: UIControl.Event.editingChanged)
-    }
-    
-    /// アンダーラインをつける
-    fileprivate func setUnderLine() {
-        let underLine = UIView()
-        addSubview(underLine)
-        underLine.anchor(top: textField.bottomAnchor, leading: layoutMarginsGuide.leadingAnchor, bottom: nil, trailing: layoutMarginsGuide.trailingAnchor, size: .init(width: .zero, height: 0.5))
-        underLine.backgroundColor = .black
-    }
-    
-    /// 変更するたびに呼び出す
-    @objc func textFieldDidChange(_ textFiled: UITextField) {
-        pass(inputView: textField)
     }
 }
 
