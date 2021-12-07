@@ -58,7 +58,6 @@ extension GuestCardTableView: UITableViewDataSource {
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = setCell(cellItem: cellItems[indexPath.section])
-        print(indexPath.section)
         return cell
     }
     

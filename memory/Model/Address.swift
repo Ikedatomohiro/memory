@@ -7,19 +7,15 @@
 
 import UIKit
 import Alamofire
+import CoreLocation
 
 class GetAddress {
-//    static func callZipCloudApi(zipcode: String) {
+    /// APIを利用して郵便番号から住所を取得
     static func callZipCloudApi(zipcode: String, completion: @escaping (String) -> ()) {
-
+        
         var resultText: String = ""
         /// 郵便番号チェック
-        let pattern = "^[0-9]{3}-?[0-9]{4}$"
-        guard let regex = try? NSRegularExpression(pattern: pattern) else { return }
-        let results = regex.matches(in: zipcode, options: [], range: NSRange(0..<zipcode.count))
-        if (results.count == 0) {
-            return
-        }
+        if !checkZipcode(zipcode: zipcode) { return }
         
         let apiURL = "https://zipcloud.ibsnet.co.jp/api/search?zipcode=\(zipcode)"
         let headers: HTTPHeaders = [
@@ -47,6 +43,33 @@ class GetAddress {
                 }
             }
         return
+    }
+    
+    /// ライブラリで郵便番号から住所を取得
+    static func transferZipcodeToAdress(zipcode: String, completion: @escaping (String) -> ()) {
+        let geocoder = CLGeocoder()
+        geocoder.geocodeAddressString(zipcode, completionHandler: {(placemarks, error) -> Void in
+            if error != nil {
+                print("Error", error)
+            }
+            if let placemark = placemarks?.first {
+                //                print("State:       \(placemark.administrativeArea)")
+                //                print("City:        \(placemark.locality)")
+                //                print("SubLocality: \(placemark.subLocality)")
+                completion("address")
+            }
+        })
+    }
+    
+    /// 郵便番号の入力チェック
+    static func checkZipcode(zipcode: String) -> Bool {
+        let pattern = "^[0-9]{3}-?[0-9]{4}$"
+        guard let regex = try? NSRegularExpression(pattern: pattern) else { return false }
+        let results = regex.matches(in: zipcode, options: [], range: NSRange(0..<zipcode.count))
+        if (results.count == 0) {
+            return false
+        }
+        return true
     }
 }
 
