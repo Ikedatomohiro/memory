@@ -28,7 +28,7 @@ struct Retual {
         let dictionary  = docment.data()
         self.id         = docment.documentID
         self.number     = dictionary["number"]     as? Int    ?? 0
-        self.retualName = dictionary["retualName"] as? String ?? ""
+        self.retualName = dictionary["name"] as? String ?? ""
         self.eventId    = dictionary["eventID"]    as? String ?? ""
         self.createdAt  = dictionary["createdAt"]  as? Date   ?? Date()
         self.updatedAt  = dictionary["updatedAt"]  as? Date   ?? Date()
@@ -36,7 +36,7 @@ struct Retual {
     
     
     static func collectionRef(eventId: String) ->CollectionReference {
-        return Firestore.firestore().collection("events").document(eventId).collection("retuals")
+        return Firestore.firestore().collection("events").document(eventId).collection("retual")
     }
     
     static func registRetual(retual: Retual, eventId: String, number: Int) {

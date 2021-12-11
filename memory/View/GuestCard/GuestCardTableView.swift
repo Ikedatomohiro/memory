@@ -6,17 +6,19 @@
 //
 
 import UIKit
+import FirebaseFirestore
 
 class GuestCardTableView: UITableView {
     
     var guest: Guest
+    var collectionDict: Dictionary<String, [CollectionList]>
     fileprivate var cellItems: Array<GuestInput.CellHeadLine>
     weak var passGuestItemDelegate: PassGuestItemDelegate?
-    
-    
-    init(guest: Guest, frame: CGRect, style: UITableView.Style) {
+        
+    init(guest: Guest, collectionDict: Dictionary<String, [CollectionList]>, frame: CGRect, style: UITableView.Style) {
         self.cellItems = GuestInput.CellHeadLine.cellHeadLineList
         self.guest = guest
+        self.collectionDict = collectionDict
         super.init(frame: .zero, style: style)
         // 区切り線を消す
         self.separatorStyle = .none
@@ -85,6 +87,7 @@ extension GuestCardTableView: UITableViewDataSource {
         var textBody: String = ""
         switch cellItem {
         case .retual:
+            headlineText = "参加儀式"
             
             break
         case .guestName:
@@ -121,13 +124,15 @@ extension GuestCardTableView: UITableViewDataSource {
             break
 
         case .relation:
-            
+            headlineText = "御関係１"
+
             break
         case .group:
-            
+            headlineText = "御関係２"
+
             break
         }
-        cell.setupCell(cellItem: cellItem, cellType: cellType ?? .nomal, headlineText: headlineText, textBody: textBody)
+        cell.setupCell(cellItem: cellItem, cellType: cellType ?? .nomal, headlineText: headlineText, textBody: textBody, collectionDict: collectionDict)
         cell.passGuestItemDelegate = self
         return cell
     }

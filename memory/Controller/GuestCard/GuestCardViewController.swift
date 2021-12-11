@@ -6,42 +6,24 @@
 //
 
 import UIKit
-//import FirebaseFirestore
-//import FirebaseStorage
-
-protocol GuestCardUpdateDelegate: AnyObject {
-    func update(guest: Guest, updateGuestParam: Set<String>)
-}
-
-protocol PassGuestItemDelegate: AnyObject {
-    func pass<Element>(inputView: Element)
-}
+import FirebaseFirestore
 
 class GuestCardViewController: UIViewController {
-
+    
     
     var event: Event
     var guest: Guest
-    var retuals: [Retual]
-    var relations: [Relation]
-    var groups: [Group]
-    var index: Int?
-    lazy var guestCardTableView = GuestCardTableView(guest: guest, frame: .zero, style: .plain)
+    var collectionDict: Dictionary<String, [CollectionList]>
+    lazy var guestCardTableView = GuestCardTableView(guest: guest, collectionDict: collectionDict, frame: .zero, style: .plain)
     
-    weak var guestupdateDelegate: GuestCardUpdateDelegate?
+    //    weak var guestupdateDelegate: GuestCardUpdateDelegate?
     
     // UIView
     fileprivate let backGroundFrame    = UIView()
     fileprivate let cardHeaderView     = CardHeaderView()
-//    lazy var guestNameView = InputGuestPlainView(frame: .zero, labelText: "御芳名", identifire: "guestName")
-//    lazy var companyNameView = InputGuestPlainView(frame: .zero, labelText: "会社名", identifire: "companyName")
-    //    fileprivate let companyNameView    = CompanyNameView()
-    //    fileprivate let addressView        = AddressView()
-    //    fileprivate let descriptionView    = DescriptionView()
     fileprivate let backToMenuButton   = UIButton()
     fileprivate var captureImage       = UIImage()
     var updateGuestParam = Set<String>()
-//    fileprivate let storage            = Storage.storage().reference(forURL: Keys.firestoreStorageUrl)
     fileprivate let registButton       = UIButton()
     //    lazy var retualCollectionView = RetualCollectionView(guest, retuals, frame: CGRect.zero)
     //    lazy var selectRelationView = SelectRelationView(guest, relations, relationCollectionView, frame: CGRect.zero)
@@ -49,12 +31,10 @@ class GuestCardViewController: UIViewController {
     //    lazy var selectGroupView = SelectGroupView(guest, groups, groupCollectionView, frame: CGRect.zero)
     //    lazy var groupCollectionView = GroupCollectionView(guest, groups, frame: CGRect.zero)
     
-    init(event: Event, guest: Guest, retuals: [Retual], relations: [Relation], groups: [Group]) {
+    init(event: Event, guest: Guest, collectionDict: Dictionary<String, [CollectionList]>) {
         self.event = event
         self.guest = guest
-        self.retuals = retuals
-        self.relations = relations
-        self.groups = groups
+        self.collectionDict = collectionDict
         super.init(nibName: nil, bundle: nil)
     }
     
@@ -69,35 +49,11 @@ class GuestCardViewController: UIViewController {
         
         setupBasic()
         setupCardHeaderView()
-        
-                setupGuestInputTableView()
-        
-//        setupGuestNameView()
-//        setupCompanyNameView()
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        //        setupCardTitleView()
-        //        setupRetualsSelectView()
-        //        setupBackgroundFrame()
-        //        setupAddressView()
-        //        setupSelectRelationView()
-        //        setupSelectGroupView()
-        //        setBackGroundFrameAnchor()
-        //        setupDescriptionView()
+        setupGuestInputTableView()
         setupBackToMenuButton()
         setupRegistButton()
     }
     
-    /// 表示アイテムを設定
-    ///
     
     override func viewWillAppear(_ animated: Bool) {
         
@@ -114,7 +70,7 @@ class GuestCardViewController: UIViewController {
     fileprivate func setupCardHeaderView() {
         view.addSubview(cardHeaderView)
         cardHeaderView.anchor(top: view.layoutMarginsGuide.topAnchor, leading: view.layoutMarginsGuide.leadingAnchor, bottom: nil, trailing: view.layoutMarginsGuide.trailingAnchor, padding: .init(top: 5, left: 0, bottom: 0, right: 0), size: .init(width: .zero, height: screenSize.height / 20))
-        cardHeaderView.setupView(index: index)
+        cardHeaderView.setupView()
     }
     
     /// 入力欄テーブルをセット
@@ -122,18 +78,7 @@ class GuestCardViewController: UIViewController {
         view.addSubview(guestCardTableView)
         guestCardTableView.anchor(top: cardHeaderView.bottomAnchor, leading: view.layoutMarginsGuide.leadingAnchor, bottom: view.layoutMarginsGuide.bottomAnchor, trailing: view.layoutMarginsGuide.trailingAnchor)
         guestCardTableView.passGuestItemDelegate = self
-//        guestCardTableView.anchor(top: nil, leading: view.layoutMarginsGuide.leadingAnchor, bottom: view.bottomAnchor, trailing: nil)
-
-//        registButton.anchor(top: nil, leading: view.layoutMarginsGuide.leadingAnchor, bottom: view.bottomAnchor, trailing: nil, padding: .init(top: 0, left: 0, bottom: 10, right: 0), size: .init(width: 150, height: 40))
     }
-    
-    //    fileprivate func setupRetualsSelectView() {
-    //        view.addSubview(retualCollectionView)
-    //        retualCollectionView.anchor(top: cardHeaderView.bottomAnchor, leading: nil, bottom: nil, trailing: cardHeaderView.trailingAnchor, size: .init(width: 300, height: screenSize.height / 16))
-    //        retualCollectionView.backgroundColor = .white
-    //        retualCollectionView.guestItemUpdateDelegate = self
-    //    }
-    //
     /// デバイスの向きが変わった時を検知した時の処理
     override func viewWillTransition(to size: CGSize, with coordinator: UIViewControllerTransitionCoordinator) {
         super.viewWillTransition(to: size, with: coordinator)
@@ -147,32 +92,10 @@ class GuestCardViewController: UIViewController {
             
         }) { UIViewControllerTransitionCoordinatorContext in
             
-//            self.guestNameView.setupLabel(width: Int(size.width))
+            // self.guestNameView.setupLabel(width: Int(size.width))
         }
     }
     
-//    fileprivate func setupGuestNameView() {
-//        view.addSubview(guestNameView)
-//        guestNameView.setupView()
-//        guestNameView.anchor(top: cardHeaderView.bottomAnchor, leading: self.view.layoutMarginsGuide.leadingAnchor, bottom: nil, trailing: self.view.layoutMarginsGuide.trailingAnchor, size: .init(width: .zero, height: screenSize.height / 10))
-//        guestNameView.passGuestItemDelegate = self
-//    }
-//    
-//    fileprivate func setupCompanyNameView() {
-//        view.addSubview(companyNameView)
-//        companyNameView.setupView()
-//        companyNameView.anchor(top: guestNameView.bottomAnchor, leading: self.view.layoutMarginsGuide.leadingAnchor, bottom: nil, trailing: self.view.layoutMarginsGuide.trailingAnchor, size: .init(width: .zero, height: screenSize.height / 10))
-//        companyNameView.passGuestItemDelegate = self
-//    }
-    //
-    //    fileprivate func setupAddressView() {
-    //        view.addSubview(addressView)
-    //        addressView.setupView(guest: guest)
-    //        addressView.anchor(top: guestNameView.bottomAnchor, leading: guestNameView.leadingAnchor, bottom: nil, trailing: companyNameView.trailingAnchor, size: .init(width: .zero, height: screenSize.height / 5))
-    //        addressView.layer.borderWidth = 1.0
-    //        addressView.guestItemupdateDelegate = self
-    //    }
-    //
     //    // どなたのご関係ですか？
     //    fileprivate func setupSelectRelationView() {
     //        view.addSubview(selectRelationView)
@@ -185,15 +108,6 @@ class GuestCardViewController: UIViewController {
     //        view.addSubview(selectGroupView)
     //        selectGroupView.anchor(top: selectRelationView.bottomAnchor, leading: backGroundFrame.leadingAnchor, bottom: nil, trailing: backGroundFrame.trailingAnchor, size: .init(width: .zero, height: screenSize.height / 10))
     //        selectGroupView.guestItemUpdateDelegate = self
-    //    }
-    
-    
-    //    // 備考
-    //    fileprivate func setupDescriptionView() {
-    //        view.addSubview(descriptionView)
-    //        descriptionView.setupView(guest: guest)
-    //        descriptionView.anchor(top: backGroundFrame.bottomAnchor, leading: backGroundFrame.leadingAnchor, bottom: view.layoutMarginsGuide.bottomAnchor, trailing: backGroundFrame.trailingAnchor)
-    //        descriptionView.guestItemupdateDelegate = self
     //    }
     
     /// メニューに戻るボタン
@@ -224,19 +138,17 @@ class GuestCardViewController: UIViewController {
     @objc func registGuest() {
         // ボタンを動かす
         registButton.animateView(registButton)
-        let defaultGuest = Guest("", retuals, relations, groups)
+//        let defaultGuest = Guest("", collectionDict)
         // どの項目も入力されていなければ登録しない
-        guard guest != defaultGuest else { return }
+//        guard guest != defaultGuest else { return }
         // Firestoreに登録
         Guest.registGuest(guest, event.eventId)
         // TODO: -　登録完了アラート
         
         // 入力欄をリセットする
-        self.guest = defaultGuest
-        guestCardTableView.resetInputData(guest: defaultGuest)
+//        self.guest = defaultGuest
+//        guestCardTableView.resetInputData(guest: defaultGuest)
     }
-    
-
     
     /// テキストフィールドから受け取った情報をGuestにセット
     fileprivate func setGuestInfo<Element>(inputView: Element) {
@@ -266,7 +178,7 @@ class GuestCardViewController: UIViewController {
         case inputContent.description.rawValue:
             guest.description = textField.text ?? ""
             break
-
+            
         default:
             break
         }

@@ -6,6 +6,7 @@
 //
 
 import UIKit
+import FirebaseFirestore
 
 class GuestCardTableViewCell: UITableViewCell {
 
@@ -25,7 +26,7 @@ class GuestCardTableViewCell: UITableViewCell {
     }
     
     /// セルをセットする
-    func setupCell(cellItem: GuestInput.CellHeadLine, cellType: GuestInput.CellType, headlineText: String, textBody: String) {
+    func setupCell(cellItem: GuestInput.CellHeadLine, cellType: GuestInput.CellType, headlineText: String, textBody: String, collectionDict: Dictionary<String, [CollectionList]>) {
 
         switch cellType {
         case .nomal:
@@ -34,6 +35,8 @@ class GuestCardTableViewCell: UITableViewCell {
             setupZipCodeCell(cellItem: cellItem, headlineText: headlineText, textBody: textBody)
         case .telNumber:
             setupTexNumberCell(cellItem: cellItem, headlineText: headlineText)
+        case .collection:
+            setupCollectionCell(cellItem: cellItem, headlineText: headlineText, collectionDict: collectionDict)
         }
     }
     
@@ -55,6 +58,23 @@ class GuestCardTableViewCell: UITableViewCell {
 
     /// 電話番号用のセルをセット
     fileprivate func setupTexNumberCell(cellItem: GuestInput.CellHeadLine, headlineText: String) {
+        
+    }
+    
+    fileprivate func setupCollectionCell(cellItem: GuestInput.CellHeadLine, headlineText: String, collectionDict: Dictionary<String, [CollectionList]>) {
+        switch cellItem {
+        case .retual:
+            break
+        case .relation:
+            var relationCollectionView = InputGuestCollectionView(cellItem: cellItem, frame: CGRect.zero)
+
+            break
+        case .group:
+            
+            break
+        default:
+            break
+        }
         
     }
 }

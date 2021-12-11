@@ -34,6 +34,7 @@ struct GuestListView {
 struct Constants {
     static let RankGuestName   = 1
     static let RankCompaneName = 2
+    static let GuestInputCardHeader = "〜御会葬賜り心より御礼申し上げます〜"
 }
 
 // MARK:- 初期データ
@@ -41,4 +42,5 @@ struct DefaultParam {
     static let retuals: [String] = ["通夜", "告別式"]
     static let relations: [String] = ["故人様", "喪主様", "ご家族", "その他"]
     static let groups: [String] = ["会社関係", "お取引先", "学校関係", "官公庁", "各種団体", "町内会", "ご友人", "ご親戚", "その他"]
+    static let collections: [String] = ["retuals", "relations", "groups"]
 }

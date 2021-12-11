@@ -80,7 +80,7 @@ class EventListViewController: UIViewController {
         self.present(VC, animated: true, completion: nil)
     }
     
-
+    
     fileprivate func setupEventNameTextFeild() {
         view.addSubview(eventNameTextField)
         eventNameTextField.anchor(top: createEventButton.bottomAnchor, leading: nil, bottom: nil, trailing: nil, size: .init(width: 200, height: 70))
@@ -118,31 +118,37 @@ class EventListViewController: UIViewController {
     
     // 戻るボタンの名称をセット
     fileprivate func setBackButtonTitle() {
-
+        
         let backBarButtonItem = UIBarButtonItem()
         backBarButtonItem.title = "イベントリストに戻る"
         self.navigationItem.backBarButtonItem = backBarButtonItem
     }
     
-    fileprivate func registDefaultParam(eventId: String) {
-        // 儀式のデフォルト値を登録
-        number = 0
-        for retual in defaultRetuals {
-            number += 1
-            Retual.registRetual(retual: Retual(name: retual), eventId: eventId, number: number)
+    fileprivate func registCollectionList(eventId: String) {
+        var list: [String]
+        for collection in DefaultParam.collections {
+            list = []
+            switch collection {
+            case "retuals":
+                list = defaultRetuals
+                break
+            case "relations":
+                list = defaultRelations
+                break
+            case "groups":
+                list = defaultGroups
+                break
+            default:
+                break
+            }
+            
+            number = 0
+            for item in list {
+                number += 1
+                CollectionList.registCollection(collection: collection, eventId: eventId, number: number, name: item)
+            }
         }
-        number = 0
-        // どなたのご関係のデフォルト値を登録
-        for relation in defaultRelations {
-            number += 1
-            Relation.registRelation(relation: Relation(name: relation), eventId: eventId, number: number)
-        }
-        number = 0
-        // どのようなご関係のデフォルト値を登録
-        for group in defaultGroups {
-            number += 1
-            Group.registGroup(group: Group(name: group), eventId: eventId, number: number)
-        }
+
     }
     
     // NavigationBarのアイコンセット
@@ -260,7 +266,7 @@ extension EventListViewController: CreateEventDelegate {
         guard let ref = docmentRef else { return }
         let eventId = ref.documentID
         // 儀式、ご関係の初期値を登録
-        registDefaultParam(eventId: eventId)
+        registCollectionList(eventId: eventId)
         // テーブル再読み込み
         fetchEventList()
     }

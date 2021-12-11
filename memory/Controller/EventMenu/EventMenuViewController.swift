@@ -7,6 +7,7 @@
 
 import UIKit
 import FirebaseFirestore
+import Alamofire
 
 class EventMenuViewController: UIViewController {
     
@@ -19,6 +20,8 @@ class EventMenuViewController: UIViewController {
     fileprivate var retuals: [Retual]      = []
     fileprivate var relations: [Relation]  = []
     fileprivate var groups: [Group]        = []
+    var collectionDict: Dictionary<String, [CollectionList]> = [:]
+    
     let selectGuests                       = SelectGuests()
     lazy var eventInfoAreaView             = EventInfoAreaView(event: event, guests: guests, frame: .zero)
     
@@ -40,6 +43,8 @@ class EventMenuViewController: UIViewController {
         setupMoveEventInfoButton()
         setupInputSettingButton()
         setBackButtonTitle()
+        collectionDict = getCollectionList(eventId: event.eventId)
+        getSelectListData()
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -109,19 +114,22 @@ class EventMenuViewController: UIViewController {
         button.titleLabel?.font = .systemFont(ofSize: 24)
         button.layer.cornerRadius = 5
     }
-
+    
     /// 各画面へ遷移
     @objc fileprivate func moveViewController(_ sender: UIButton)
     {
         var vc = UIViewController()
         let identifire = sender.accessibilityIdentifier
+        
         switch identifire {
         case "guestInput":
+            
             let defaultGuest = Guest("", retuals, relations, groups)
-            vc = GuestCardViewController(event: event, guest: defaultGuest, retuals: retuals, relations: relations, groups: groups)
+            
+            vc = GuestCardViewController(event: event, guest: defaultGuest, collectionDict: collectionDict)
             break
         case "guestList":
-            vc = GuestListViewController(event, retuals,guests)
+            vc = GuestListViewController(event, retuals, guests)
             break
         case "eventInfo":
             vc = EventInfoViewController(event: event)
@@ -143,6 +151,23 @@ class EventMenuViewController: UIViewController {
         backBarButtonItem.title = "メニューに戻る"
         self.navigationItem.backBarButtonItem = backBarButtonItem
     }
+    
+    /// 各種リストを取得
+    fileprivate func getCollectionList(eventId: String) -> Dictionary<String, [CollectionList]> {
+        for collection in DefaultParam.collections {
+            
+            CollectionList.collectionRef(eventId: eventId, collection: collection).order(by: "number").getDocuments() { (querySnapshot, error) in
+                guard let documents = querySnapshot?.documents else { return }
+                let collectionItem = documents.map({ (document) -> CollectionList in
+                    let collectionItem = CollectionList(docment: document)
+                    return collectionItem
+                })
+                self.collectionDict.updateValue(collectionItem, forKey: collection)
+            }
+        }
+        return self.collectionDict
+    }
+    
     
     /// 儀式リストを取得
     fileprivate func getRetuals(eventId: String) -> [Retual] {
@@ -179,7 +204,7 @@ class EventMenuViewController: UIViewController {
         }
         return self.groups
     }
-
+    
     /// 各選択ボタンリストを取得
     fileprivate func getSelectListData() {
         self.retuals = getRetuals(eventId: event.eventId)

@@ -67,6 +67,10 @@
 		E5E45480273D40EF00F22729 /* Event.swift in Sources */ = {isa = PBXBuildFile; fileRef = E5E4547F273D40EF00F22729 /* Event.swift */; };
 		E5E45482273D416B00F22729 /* Guest.swift in Sources */ = {isa = PBXBuildFile; fileRef = E5E45481273D416B00F22729 /* Guest.swift */; };
 		E5E8015D275F2E0A0063C504 /* InputGuestZipcodeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E5E8015C275F2E0A0063C504 /* InputGuestZipcodeView.swift */; };
+		E5E8015F275F50120063C504 /* InputGuestCollectionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E5E8015E275F50120063C504 /* InputGuestCollectionView.swift */; };
+		E5E80161275F50B10063C504 /* CheckBoxCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = E5E80160275F50B10063C504 /* CheckBoxCell.swift */; };
+		E5E80164275F58710063C504 /* CustomDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = E5E80163275F58710063C504 /* CustomDelegate.swift */; };
+		E5E80167275F5D170063C504 /* Collections.swift in Sources */ = {isa = PBXBuildFile; fileRef = E5E80166275F5D170063C504 /* Collections.swift */; };
 		E5ECB999273F79A50033513E /* Retual.swift in Sources */ = {isa = PBXBuildFile; fileRef = E5ECB998273F79A50033513E /* Retual.swift */; };
 		E5ECB99B273F79C10033513E /* Relation.swift in Sources */ = {isa = PBXBuildFile; fileRef = E5ECB99A273F79C10033513E /* Relation.swift */; };
 		E5ECB99D273F7A3C0033513E /* Group.swift in Sources */ = {isa = PBXBuildFile; fileRef = E5ECB99C273F7A3C0033513E /* Group.swift */; };
@@ -162,6 +166,10 @@
 		E5E4547F273D40EF00F22729 /* Event.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Event.swift; sourceTree = "<group>"; };
 		E5E45481273D416B00F22729 /* Guest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Guest.swift; sourceTree = "<group>"; };
 		E5E8015C275F2E0A0063C504 /* InputGuestZipcodeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InputGuestZipcodeView.swift; sourceTree = "<group>"; };
+		E5E8015E275F50120063C504 /* InputGuestCollectionView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InputGuestCollectionView.swift; sourceTree = "<group>"; };
+		E5E80160275F50B10063C504 /* CheckBoxCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CheckBoxCell.swift; sourceTree = "<group>"; };
+		E5E80163275F58710063C504 /* CustomDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomDelegate.swift; sourceTree = "<group>"; };
+		E5E80166275F5D170063C504 /* Collections.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Collections.swift; sourceTree = "<group>"; };
 		E5ECB998273F79A50033513E /* Retual.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Retual.swift; sourceTree = "<group>"; };
 		E5ECB99A273F79C10033513E /* Relation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Relation.swift; sourceTree = "<group>"; };
 		E5ECB99C273F7A3C0033513E /* Group.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Group.swift; sourceTree = "<group>"; };
@@ -330,12 +338,14 @@
 			children = (
 				E5C201B2274A0C9000FBD2CE /* CardHeaderView.swift */,
 				E5823137274C77090007AA9B /* ZipCodeView.swift */,
+				E5E80160275F50B10063C504 /* CheckBoxCell.swift */,
 				E5823139274C77170007AA9B /* AddressView.swift */,
 				E582313B274C77270007AA9B /* TelNumberView.swift */,
 				E582313D274C7BBF0007AA9B /* InputGuestPlainView.swift */,
 				E5E8015C275F2E0A0063C504 /* InputGuestZipcodeView.swift */,
 				E5794D88274F2EC1002A0822 /* GuestCardTableView.swift */,
 				E5794D8A274F301E002A0822 /* GuestCardTableViewCell.swift */,
+				E5E8015E275F50120063C504 /* InputGuestCollectionView.swift */,
 			);
 			path = GuestCard;
 			sourceTree = "<group>";
@@ -365,6 +375,7 @@
 		E5E303C0273CED130045C59B /* memory */ = {
 			isa = PBXGroup;
 			children = (
+				E5E80162275F584F0063C504 /* Delegate */,
 				E55DA4F1273FD5DD00CBAE45 /* Extensions */,
 				E5E45473273D3F0B00F22729 /* Model */,
 				E5E45474273D3F1400F22729 /* View */,
@@ -401,6 +412,7 @@
 			isa = PBXGroup;
 			children = (
 				E5E4547F273D40EF00F22729 /* Event.swift */,
+				E5E80166275F5D170063C504 /* Collections.swift */,
 				E5794D8C274F47D2002A0822 /* GuestInput.swift */,
 				E5E45481273D416B00F22729 /* Guest.swift */,
 				E5ECB998273F79A50033513E /* Retual.swift */,
@@ -473,6 +485,14 @@
 			children = (
 			);
 			path = InputGuest;
+			sourceTree = "<group>";
+		};
+		E5E80162275F584F0063C504 /* Delegate */ = {
+			isa = PBXGroup;
+			children = (
+				E5E80163275F58710063C504 /* CustomDelegate.swift */,
+			);
+			path = Delegate;
 			sourceTree = "<group>";
 		};
 		F1111B3BD0376D791EF40E9E /* Pods */ = {
@@ -743,7 +763,9 @@
 				E596274D2749D9A60093E7CE /* EventInfoAreaView.swift in Sources */,
 				E5AD3BB4273FD32F00B4ECE0 /* EventListTableView.swift in Sources */,
 				E596275C2749DAFC0093E7CE /* SideMenuTableViewCell.swift in Sources */,
+				E5E80164275F58710063C504 /* CustomDelegate.swift in Sources */,
 				E582313A274C77170007AA9B /* AddressView.swift in Sources */,
+				E5E80161275F50B10063C504 /* CheckBoxCell.swift in Sources */,
 				E596276E2749DCE00093E7CE /* GuestListHeaderCell.swift in Sources */,
 				E596276C2749DC940093E7CE /* GuestListCell.swift in Sources */,
 				E5E45482273D416B00F22729 /* Guest.swift in Sources */,
@@ -763,10 +785,12 @@
 				E59627502749DA320093E7CE /* EventInfoViewController.swift in Sources */,
 				E59627672749DC030093E7CE /* SideMenuPresentationController.swift in Sources */,
 				E59627652749DBCE0093E7CE /* TermsOfUseViewController.swift in Sources */,
+				E5E80167275F5D170063C504 /* Collections.swift in Sources */,
 				E5794D8B274F301E002A0822 /* GuestCardTableViewCell.swift in Sources */,
 				E5E45480273D40EF00F22729 /* Event.swift in Sources */,
 				E5ECB999273F79A50033513E /* Retual.swift in Sources */,
 				E5C201B3274A0C9000FBD2CE /* CardHeaderView.swift in Sources */,
+				E5E8015F275F50120063C504 /* InputGuestCollectionView.swift in Sources */,
 				E5C201BA274A2F8F00FBD2CE /* UITextField.swift in Sources */,
 				E5ECB99B273F79C10033513E /* Relation.swift in Sources */,
 				E559EC902758A1EF00686DD0 /* GuestInputSettingViewController.swift in Sources */,

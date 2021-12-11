@@ -21,13 +21,13 @@ class CardHeaderView: UIView {
         fatalError("init(coder:) has not been implemented")
     }
     
-    func setupView(index: Int?) {
+    func setupView() {
         setupLabel()
     }
     
     fileprivate func setupLabel() {
         addSubview(cardHeaderLabel)
-        cardHeaderLabel.text = "〜御会葬賜り心より御礼申し上げます〜"
+        cardHeaderLabel.text = Constants.GuestInputCardHeader
         cardHeaderLabel.anchor(top: layoutMarginsGuide.topAnchor, leading: layoutMarginsGuide.leadingAnchor, bottom: layoutMarginsGuide.bottomAnchor, trailing: layoutMarginsGuide.trailingAnchor)
         cardHeaderLabel.textAlignment = .center
     }

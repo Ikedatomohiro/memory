@@ -13,6 +13,7 @@ struct GuestInput {
         case nomal
         case zipCode
         case telNumber
+        case collection
         
         static let cellTypeList = CellType.allCases.map({ $0 })
     }
