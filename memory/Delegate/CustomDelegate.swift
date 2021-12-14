@@ -7,11 +7,6 @@
 
 import Foundation
 
-
-//protocol GuestCardUpdateDelegate: AnyObject {
-//    func update(guest: Guest, updateGuestParam: Set<String>)
-//}
-
 ///  Guestの入力情報をコントローラに引き継ぐ
 protocol PassGuestItemDelegate: AnyObject {
     func pass<Element>(inputView: Element)

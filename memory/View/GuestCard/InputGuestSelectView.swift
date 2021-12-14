@@ -13,8 +13,7 @@ class InputGuestSelectView: UIView {
     var labelText = ""
     let identifire: String
     let collections: [CollectionList]
-    lazy var selectCollectionView = SelectCollectionView(cellItem: .retual, collections: collections, frame: frame)
-    
+    lazy var selectCollectionView = SelectCollectionView(identifire: identifire, collections: collections, frame: frame)
     weak var passGuestItemDelegate: PassGuestItemDelegate?
     
     // MARK: - Init
@@ -58,9 +57,6 @@ class InputGuestSelectView: UIView {
         underLine.anchor(top: selectCollectionView.bottomAnchor, leading: layoutMarginsGuide.leadingAnchor, bottom: nil, trailing: layoutMarginsGuide.trailingAnchor, size: .init(width: .zero, height: 0.5))
         underLine.backgroundColor = .black
     }
-    
-    
-    
 }
 // MARK: - Extensions
 extension InputGuestSelectView: PassGuestItemDelegate {

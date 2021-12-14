@@ -122,14 +122,13 @@ extension GuestCardTableView: UITableViewDataSource {
             textBody = guest.description
             cellType = .nomal
             break
-
         case .relation:
             headlineText = "御関係１"
-
+            cellType = .collection
             break
         case .group:
             headlineText = "御関係２"
-
+            cellType = .collection
             break
         }
         cell.setupCell(cellItem: cellItem, cellType: cellType ?? .nomal, headlineText: headlineText, textBody: textBody, collectionDict: collectionDict)

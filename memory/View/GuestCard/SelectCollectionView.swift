@@ -9,7 +9,7 @@ import UIKit
 
 class SelectCollectionView: UICollectionView {
     
-    var cellItem: GuestInput.CellHeadLine
+    var identifire: String
     var collections: [CollectionList]
     
     weak var passGuestItemDelegate: PassGuestItemDelegate?
@@ -20,8 +20,8 @@ class SelectCollectionView: UICollectionView {
     }()
     
     // MARK: - Init
-    init(cellItem: GuestInput.CellHeadLine, collections: [CollectionList], frame: CGRect) {
-        self.cellItem = cellItem
+    init(identifire: String, collections: [CollectionList], frame: CGRect) {
+        self.identifire = identifire
         self.collections = collections
         super.init(frame: frame, collectionViewLayout: layout)
         setup()
@@ -35,37 +35,20 @@ class SelectCollectionView: UICollectionView {
         self.dataSource = self
         self.delegate = self
         self.register(CheckBoxCell.self, forCellWithReuseIdentifier: CheckBoxCell.className)
-        self.accessibilityIdentifier = cellItem.rawValue
+        self.accessibilityIdentifier = identifire
+        print(identifire)
     }
 }
 
 // MARK: - Extensions
 extension SelectCollectionView: UICollectionViewDataSource {
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        
-        var collectionCount = 0
-        collectionCount = collections.count
-//        switch cellItem {
-//        case .retual:
-//            collectionCount = DefaultParam.retuals.count
-//        case .relation:
-//            collectionCount = DefaultParam.relations.count
-//            break
-//        default:
-//            break
-//        }
-//        
-        return collectionCount
+        return collections.count
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: CheckBoxCell.className, for: indexPath) as! CheckBoxCell
-        
-        cell.setupContents(collection: collections[indexPath.item], identifire: cellItem.rawValue)
-        //        // 対象のセルのIDをセット
-        //        let relationId = relations[indexPath.item].id
-        //        let relation = guest.relations[relationId] ?? false
-        //        cell.setButtonColor(isActive: relation)
+        cell.setupContents(collection: collections[indexPath.item], identifire: identifire)
         return cell
     }
 }
@@ -81,9 +64,8 @@ extension SelectCollectionView: UICollectionViewDelegate {
         let cell = collectionView.cellForItem(at: indexPath) as! CheckBoxCell
         // 選択されたセルを揺らす
         cell.animateView(cell.label)
-        
+        // ボタンの色を変える
         cell.setButtonColor(isActive: cell.isActive)
-        
         // guestsの配列データを更新
         pass(inputView: cell)
     }

@@ -16,8 +16,6 @@ class GuestCardViewController: UIViewController {
     var collectionDict: Dictionary<String, [CollectionList]>
     lazy var guestCardTableView = GuestCardTableView(guest: guest, collectionDict: collectionDict, frame: .zero, style: .plain)
     
-    //    weak var guestupdateDelegate: GuestCardUpdateDelegate?
-    
     // UIView
     fileprivate let backGroundFrame    = UIView()
     fileprivate let cardHeaderView     = CardHeaderView()
@@ -25,12 +23,8 @@ class GuestCardViewController: UIViewController {
     fileprivate var captureImage       = UIImage()
     var updateGuestParam = Set<String>()
     fileprivate let registButton       = UIButton()
-    //    lazy var retualCollectionView = RetualCollectionView(guest, retuals, frame: CGRect.zero)
-    //    lazy var selectRelationView = SelectRelationView(guest, relations, relationCollectionView, frame: CGRect.zero)
-    //    lazy var relationCollectionView = RelationCollectionView(guest, relations, frame: CGRect.zero)
-    //    lazy var selectGroupView = SelectGroupView(guest, groups, groupCollectionView, frame: CGRect.zero)
-    //    lazy var groupCollectionView = GroupCollectionView(guest, groups, frame: CGRect.zero)
-    
+
+    // MARK: - init
     init(event: Event, collectionDict: Dictionary<String, [CollectionList]>) {
         self.event = event
         self.collectionDict = collectionDict
@@ -52,13 +46,7 @@ class GuestCardViewController: UIViewController {
         setupGuestInputTableView()
         setupBackToMenuButton()
         setupRegistButton()
-//        var selectDict: Dictionary<String, Dictionary<String, Bool>> = [:]
-//        for collection in collectionDict {
-//            selectDict[collection.key] = collection.value.reduce(into: [String: Bool]()) { $0[$1.id] = false }
-//        }
-//
     }
-    
     
     override func viewWillAppear(_ animated: Bool) {
         
@@ -97,23 +85,8 @@ class GuestCardViewController: UIViewController {
             
         }) { UIViewControllerTransitionCoordinatorContext in
             
-            // self.guestNameView.setupLabel(width: Int(size.width))
         }
     }
-    
-    //    // どなたのご関係ですか？
-    //    fileprivate func setupSelectRelationView() {
-    //        view.addSubview(selectRelationView)
-    //        selectRelationView.anchor(top: addressView.bottomAnchor, leading: backGroundFrame.leadingAnchor, bottom: nil, trailing: backGroundFrame.trailingAnchor, size: .init(width: .zero, height: screenSize.height / 12))
-    //        selectRelationView.guestItemUpdateDelegate = self
-    //    }
-    //
-    //    // どのようなご関係ですか？
-    //    fileprivate func setupSelectGroupView() {
-    //        view.addSubview(selectGroupView)
-    //        selectGroupView.anchor(top: selectRelationView.bottomAnchor, leading: backGroundFrame.leadingAnchor, bottom: nil, trailing: backGroundFrame.trailingAnchor, size: .init(width: .zero, height: screenSize.height / 10))
-    //        selectGroupView.guestItemUpdateDelegate = self
-    //    }
     
     /// メニューに戻るボタン
     fileprivate func setupBackToMenuButton() {
