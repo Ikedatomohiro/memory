@@ -82,6 +82,7 @@ class CreateEventViewController: UIViewController {
         createEventDelegate?.hidePopup()
     }
     
+    /// 作成ボタンをタップ
     @objc fileprivate func createButtonDidTap() {
         createBUtton.animateView(createBUtton)
         guard eventNameTextField.text != "" else {

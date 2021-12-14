@@ -110,6 +110,7 @@ class EventListViewController: UIViewController {
         }
     }
     
+    /// サインインページに遷移
     fileprivate func moveToSignInPage() {
         let signInVC = SignInViewController()
         signInVC.modalPresentationStyle = .fullScreen
@@ -124,6 +125,7 @@ class EventListViewController: UIViewController {
         self.navigationItem.backBarButtonItem = backBarButtonItem
     }
     
+    /// 選択ボタンリストを登録
     fileprivate func registCollectionList(eventId: String) {
         var list: [String]
         for collection in DefaultParam.collections {

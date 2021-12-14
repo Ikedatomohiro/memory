@@ -123,10 +123,7 @@ class EventMenuViewController: UIViewController {
         
         switch identifire {
         case "guestInput":
-            
-            let defaultGuest = Guest("", retuals, relations, groups)
-            
-            vc = GuestCardViewController(event: event, guest: defaultGuest, collectionDict: collectionDict)
+            vc = GuestCardViewController(event: event, collectionDict: collectionDict)
             break
         case "guestList":
             vc = GuestListViewController(event, retuals, guests)

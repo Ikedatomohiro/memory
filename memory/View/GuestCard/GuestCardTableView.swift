@@ -87,8 +87,8 @@ extension GuestCardTableView: UITableViewDataSource {
         var textBody: String = ""
         switch cellItem {
         case .retual:
-            headlineText = "参加儀式"
-            
+            headlineText = "御参加儀式"
+            cellType = .collection
             break
         case .guestName:
             cellType = GuestInput.CellType.nomal

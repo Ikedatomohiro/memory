@@ -9,7 +9,7 @@ import UIKit
 import FirebaseFirestore
 
 class GuestCardTableViewCell: UITableViewCell {
-
+    
     let textField = UITextField()
     var titleLabel = UILabel()
     var labelText = ""
@@ -27,7 +27,7 @@ class GuestCardTableViewCell: UITableViewCell {
     
     /// セルをセットする
     func setupCell(cellItem: GuestInput.CellHeadLine, cellType: GuestInput.CellType, headlineText: String, textBody: String, collectionDict: Dictionary<String, [CollectionList]>) {
-
+        
         switch cellType {
         case .nomal:
             setupNomalCell(cellItem: cellItem, headlineText: headlineText, textBody: textBody)
@@ -55,27 +55,35 @@ class GuestCardTableViewCell: UITableViewCell {
         contentView.addSubview(zipcodeView)
         zipcodeView.anchor(top: layoutMarginsGuide.topAnchor, leading: layoutMarginsGuide.leadingAnchor, bottom: bottomAnchor, trailing: layoutMarginsGuide.trailingAnchor, padding: .init(top: 5, left: 5, bottom: 0, right: 15), size: .init(width: screenSize.width / 6 , height: .zero))
     }
-
+    
     /// 電話番号用のセルをセット
     fileprivate func setupTexNumberCell(cellItem: GuestInput.CellHeadLine, headlineText: String) {
         
     }
     
+    /// 選択ボタン用のセルをセット
     fileprivate func setupCollectionCell(cellItem: GuestInput.CellHeadLine, headlineText: String, collectionDict: Dictionary<String, [CollectionList]>) {
+        
+        var collection = ""
         switch cellItem {
         case .retual:
+            collection = "retuals"
             break
         case .relation:
-            var relationCollectionView = InputGuestCollectionView(cellItem: cellItem, frame: CGRect.zero)
-
+            collection = "relations"
             break
         case .group:
-            
+            collection = "groups"
             break
         default:
             break
         }
-        
+        guard let collections = collectionDict[collection] else { return }
+               
+        let collectionView = InputGuestSelectView(frame: frame, labelText: headlineText, identifire: cellItem.rawValue, collections: collections)
+        contentView.addSubview(collectionView)
+        collectionView.passGuestItemDelegate = self
+        collectionView.anchor(top: layoutMarginsGuide.topAnchor, leading: layoutMarginsGuide.leadingAnchor, bottom: layoutMarginsGuide.bottomAnchor, trailing: layoutMarginsGuide.trailingAnchor, padding: .init(top: 5, left: 5, bottom: 0, right: 15), size: .init(width: screenSize.width / 6 , height: .zero))
     }
 }
 

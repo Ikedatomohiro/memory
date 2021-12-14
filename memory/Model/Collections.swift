@@ -12,7 +12,6 @@ struct CollectionList {
     var id        : String
     var number    : Int // 順番保持用
     var name      : String
-    let eventId   : String
     let createdAt : Date
     var updatedAt : Date
 
@@ -20,7 +19,6 @@ struct CollectionList {
         self.id        = ""
         self.number    = 0
         self.name      = name
-        self.eventId   = ""
         self.createdAt = Date()
         self.updatedAt = Date()
     }
@@ -28,18 +26,16 @@ struct CollectionList {
     init(docment: QueryDocumentSnapshot) {
         let dictionary = docment.data()
         self.id        = docment.documentID
-        self.number    = dictionary["number"]    as? Int    ?? 0
-        self.name      = dictionary["name"]      as? String ?? ""
-        self.eventId   = dictionary["eventID"]   as? String ?? ""
-        self.createdAt = dictionary["createdAt"] as? Date   ?? Date()
-        self.updatedAt = dictionary["updatedAt"] as? Date   ?? Date()
+        self.number    = dictionary["number"] as? Int ?? 0
+        self.name      = dictionary["name"] as? String ?? ""
+        self.createdAt = (dictionary["createdAt"] as! Timestamp).dateValue()
+        self.updatedAt = (dictionary["updatedAt"] as! Timestamp).dateValue()
     }
     
     static func registCollection(collection: String, eventId: String, number: Int, name: String) {
         collectionRef(eventId: eventId, collection: collection).addDocument(data: [
             "number"    : number,
             "name"      : name,
-            "eventId"   : eventId,
             "createdAt" : Date(),
             "updatedAt" : Date()
         ])

@@ -31,10 +31,10 @@ class GuestCardViewController: UIViewController {
     //    lazy var selectGroupView = SelectGroupView(guest, groups, groupCollectionView, frame: CGRect.zero)
     //    lazy var groupCollectionView = GroupCollectionView(guest, groups, frame: CGRect.zero)
     
-    init(event: Event, guest: Guest, collectionDict: Dictionary<String, [CollectionList]>) {
+    init(event: Event, collectionDict: Dictionary<String, [CollectionList]>) {
         self.event = event
-        self.guest = guest
         self.collectionDict = collectionDict
+        self.guest = Guest.init("", collectionDict)
         super.init(nibName: nil, bundle: nil)
     }
     
@@ -52,6 +52,11 @@ class GuestCardViewController: UIViewController {
         setupGuestInputTableView()
         setupBackToMenuButton()
         setupRegistButton()
+//        var selectDict: Dictionary<String, Dictionary<String, Bool>> = [:]
+//        for collection in collectionDict {
+//            selectDict[collection.key] = collection.value.reduce(into: [String: Bool]()) { $0[$1.id] = false }
+//        }
+//
     }
     
     
@@ -138,49 +143,80 @@ class GuestCardViewController: UIViewController {
     @objc func registGuest() {
         // ボタンを動かす
         registButton.animateView(registButton)
-//        let defaultGuest = Guest("", collectionDict)
+        let defaultGuest = Guest("", [:])
         // どの項目も入力されていなければ登録しない
-//        guard guest != defaultGuest else { return }
+        guard guest != defaultGuest else { return }
         // Firestoreに登録
         Guest.registGuest(guest, event.eventId)
         // TODO: -　登録完了アラート
         
         // 入力欄をリセットする
-//        self.guest = defaultGuest
-//        guestCardTableView.resetInputData(guest: defaultGuest)
+        self.guest = defaultGuest
+        guestCardTableView.resetInputData(guest: defaultGuest)
     }
     
     /// テキストフィールドから受け取った情報をGuestにセット
     fileprivate func setGuestInfo<Element>(inputView: Element) {
-        if type(of: inputView) != UITextField.self { return }
-        
-        let textField = inputView as! UITextField
-        let identifier = textField.accessibilityIdentifier
-        let inputContent = GuestInput.CellHeadLine.self
-        // 入ってきた情報により保存する情報を振り分ける
-        switch identifier {
-        case inputContent.guestName.rawValue:
-            guest.guestName = textField.text ?? ""
-            break
-        case inputContent.companyName.rawValue:
-            guest.companyName = textField.text ?? ""
-            break
-        case inputContent.zipCode.rawValue:
-            guest.zipCode = textField.text ?? ""
-            getAdress(zipcode: guest.zipCode)
-            break
-        case inputContent.address.rawValue:
-            guest.address = textField.text ?? ""
-            break
-        case inputContent.telNumber.rawValue:
-            guest.telNumber = textField.text ?? ""
-            break
-        case inputContent.description.rawValue:
-            guest.description = textField.text ?? ""
-            break
+        if type(of: inputView) == UITextField.self  {
+            let textField = inputView as! UITextField
+            let identifier = textField.accessibilityIdentifier
             
-        default:
-            break
+            let inputContent = GuestInput.CellHeadLine.self
+            // 入ってきた情報により保存する情報を振り分ける
+            switch identifier {
+            case inputContent.guestName.rawValue:
+                guest.guestName = textField.text ?? ""
+                break
+            case inputContent.companyName.rawValue:
+                guest.companyName = textField.text ?? ""
+                break
+            case inputContent.zipCode.rawValue:
+                guest.zipCode = textField.text ?? ""
+                getAdress(zipcode: guest.zipCode)
+                break
+            case inputContent.address.rawValue:
+                guest.address = textField.text ?? ""
+                break
+            case inputContent.telNumber.rawValue:
+                guest.telNumber = textField.text ?? ""
+                break
+            case inputContent.description.rawValue:
+                guest.description = textField.text ?? ""
+                break
+                
+            default:
+                break
+            }
+        } else if type(of: inputView) == CheckBoxCell.self {
+            let checkBoxCell = inputView as! CheckBoxCell
+            print(checkBoxCell.isActive)
+            let identifire = checkBoxCell.accessibilityIdentifier
+            let inputContent = GuestInput.CellHeadLine.self
+
+            switch identifire {
+            case inputContent.retual.rawValue:
+                if var selectDict = guest.selectDict["retuals"] {
+                    selectDict[checkBoxCell.id] = checkBoxCell.isActive
+                    guest.selectDict["retuals"] = selectDict
+                }
+                break
+            case inputContent.relation.rawValue:
+                if var selectDict = guest.selectDict["relations"] {
+                    selectDict[checkBoxCell.id] = checkBoxCell.isActive
+                    guest.selectDict["relations"] = selectDict
+                }
+                break
+            case inputContent.group.rawValue:
+                if var selectDict = guest.selectDict["groups"] {
+                    selectDict[checkBoxCell.id] = checkBoxCell.isActive
+                    guest.selectDict["groups"] = selectDict
+                }
+                break
+            default:
+                break
+            }
+        } else {
+            return
         }
     }
     

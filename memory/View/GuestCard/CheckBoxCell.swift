@@ -10,13 +10,14 @@ import UIKit
 class CheckBoxCell: UICollectionViewCell {
     
     let label = UILabel()
-    fileprivate let isActive: Bool = false
-
+    var isActive: Bool = false
+    var id = ""
+    
     override init(frame: CGRect) {
         super.init(frame: frame)
         setup()
     }
-
+    
     required init?(coder aDecoder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
@@ -27,18 +28,23 @@ class CheckBoxCell: UICollectionViewCell {
         label.textAlignment = .center
     }
     
-    func setupContents(textName: String) {
-        label.text = textName
+    func setupContents(collection: CollectionList, identifire: String) {
+        label.text = collection.name
         label.font = .systemFont(ofSize: 24)
         label.layer.cornerRadius = 5
         label.clipsToBounds = true
+        label.backgroundColor = gray
+        self.accessibilityIdentifier = identifire
+        self.id = collection.id
     }
     
     func setButtonColor(isActive: Bool) {
         if isActive == true {
-            label.backgroundColor = green
-        } else if isActive == false {
             label.backgroundColor = gray
+            self.isActive = false
+        } else if isActive == false {
+            label.backgroundColor = green
+            self.isActive = true
         }
     }
     

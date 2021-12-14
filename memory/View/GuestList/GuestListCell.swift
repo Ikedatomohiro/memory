@@ -77,12 +77,12 @@ class GuestListCell: UITableViewCell {
 
     func setRetualAttendanceList(_ guest: Guest,_ retuals: [Retual]) -> String {
         var labelText: String = ""
-        for retual in retuals where guest.retuals["\(retual.id)"] == true {
-            if labelText != "" {
-                labelText = labelText + " ・ "
-            }
-            labelText = labelText + retual.retualName
-        }
+//        for retual in retuals where guest.retuals["\(retual.id)"] == true {
+//            if labelText != "" {
+//                labelText = labelText + " ・ "
+//            }
+//            labelText = labelText + retual.retualName
+//        }
         return labelText
     }
 }
