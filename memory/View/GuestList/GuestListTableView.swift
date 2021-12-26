@@ -19,15 +19,13 @@ protocol ChangeGuestsRankDelegate: AnyObject {
 class GuestListTableView: UITableView {
     
     fileprivate var guests: [Guest]
-    let retuals: [Retual]
     var selectRank: Dictionary<String, Bool?> = [:]
     
     weak var transitionDelegate: TransitionGuestDetailDelegate?
     weak var changeGuestsRankDelegate: ChangeGuestsRankDelegate?
     
-    init(guests: [Guest], retuals: [Retual], frame: CGRect, style: UITableView.Style) {
+    init(guests: [Guest], frame: CGRect, style: UITableView.Style) {
         self.guests = guests
-        self.retuals = retuals
         super.init(frame: .zero, style: style)
         self.tableFooterView = UIView()
         self.delegate = self
@@ -67,7 +65,7 @@ extension GuestListTableView: UITableViewDataSource {
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         guard let cell = tableView.dequeueReusableCell(withIdentifier: GuestListCell.className) as? GuestListCell else { fatalError("improper UITableViewCell")}
-        cell.setupGuestCell(guests[indexPath.row], retuals, indexPath: indexPath.row)
+        cell.setupGuestCell(guests[indexPath.row], indexPath: indexPath.row)
         cell.selectionStyle = .none
         return cell
     }

@@ -23,13 +23,14 @@ class GuestListCell: UITableViewCell {
         fatalError("init(coder:) has not been implemented")
     }
     
-    func setupGuestCell(_ guest: Guest,_ retuals: [Retual], indexPath: Int) {
+    func setupGuestCell(_ guest: Guest, indexPath: Int) {
+//        func setupGuestCell(_ guest: Guest,_ retuals: [Retual], indexPath: Int) {
         setupBase(indexPath)
         setupNumberLabel(indexPath)
         setupGuestNameLabel(guest)
         setupCompanyNameLabel(guest)
         setupAddresLabel(guest)
-        setupRetualAttendanceLabel(guest, retuals)
+        setupRetualAttendanceLabel(guest)
     }
     
     func setupBase(_ indexPath: Int) {
@@ -69,13 +70,13 @@ class GuestListCell: UITableViewCell {
         addressLabel.numberOfLines = 0
     }
 
-    fileprivate func setupRetualAttendanceLabel(_ guest: Guest,_ retuals: [Retual]) {
+    fileprivate func setupRetualAttendanceLabel(_ guest: Guest) {
         addSubview(retualAttendanceLabel)
         retualAttendanceLabel.anchor(top: layoutMarginsGuide.topAnchor, leading: addressLabel.trailingAnchor, bottom: layoutMarginsGuide.bottomAnchor, trailing: nil, size: .init(width: GuestListView.retualWidth, height: .zero))
-        retualAttendanceLabel.text = setRetualAttendanceList(guest, retuals)
+        retualAttendanceLabel.text = setRetualAttendanceList(guest)
     }
 
-    func setRetualAttendanceList(_ guest: Guest,_ retuals: [Retual]) -> String {
+    func setRetualAttendanceList(_ guest: Guest) -> String {
         var labelText: String = ""
 //        for retual in retuals where guest.retuals["\(retual.id)"] == true {
 //            if labelText != "" {

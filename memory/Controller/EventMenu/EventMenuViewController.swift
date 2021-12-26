@@ -17,9 +17,6 @@ class EventMenuViewController: UIViewController {
     fileprivate let moveGuestListButton    = UIButton()
     fileprivate let moveEventInfoButton    = UIButton()
     fileprivate let moveInputSettingButton = UIButton()
-    fileprivate var retuals: [Retual]      = []
-    fileprivate var relations: [Relation]  = []
-    fileprivate var groups: [Group]        = []
     var collectionDict: Dictionary<String, [CollectionList]> = [:]
     
     let selectGuests                       = SelectGuests()
@@ -44,7 +41,7 @@ class EventMenuViewController: UIViewController {
         setupInputSettingButton()
         setBackButtonTitle()
         collectionDict = getCollectionList(eventId: event.eventId)
-        getSelectListData()
+//        getSelectListData()
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -54,7 +51,7 @@ class EventMenuViewController: UIViewController {
     //MARK:- Function
     fileprivate func setupBase() {
         navigationItem.title = event.eventName
-        self.getSelectListData()
+//        self.getSelectListData()
         self.view.backgroundColor = .white
     }
     
@@ -126,7 +123,7 @@ class EventMenuViewController: UIViewController {
             vc = GuestCardViewController(event: event, collectionDict: collectionDict)
             break
         case "guestList":
-            vc = GuestListViewController(event, retuals, guests)
+//            vc = GuestListViewController(event, retuals, guests)
             break
         case "eventInfo":
             vc = EventInfoViewController(event: event)
@@ -164,48 +161,5 @@ class EventMenuViewController: UIViewController {
         }
         return self.collectionDict
     }
-    
-    
-    /// 儀式リストを取得
-    fileprivate func getRetuals(eventId: String) -> [Retual] {
-        Retual.collectionRef(eventId: eventId).order(by: "number").getDocuments() { (querySnapshot, error) in
-            guard let documents = querySnapshot?.documents else { return }
-            self.retuals = documents.map({ (document) -> Retual in
-                let retual = Retual(docment: document)
-                return retual
-            })
-        }
-        return self.retuals
-    }
-    
-    /// ご関係リストを取得
-    fileprivate func getRelations(eventId: String) -> [Relation] {
-        Relation.collectionRef(eventId: eventId).order(by: "number").getDocuments { (querySnapshot, error) in
-            guard let documents = querySnapshot?.documents else { return }
-            self.relations = documents.map({ (documnt) -> Relation in
-                let relation = Relation(docment: documnt)
-                return relation
-            })
-        }
-        return self.relations
-    }
-    
-    /// 所属団体リストを取得
-    fileprivate func getGroups(eventId: String) -> [Group] {
-        Group.collectionRef(eventId: eventId).order(by: "number").getDocuments { (querySnapshot, error) in
-            guard let documents = querySnapshot?.documents else { return }
-            self.groups = documents.map({ (documnt) -> Group in
-                let group = Group(docment: documnt)
-                return group
-            })
-        }
-        return self.groups
-    }
-    
-    /// 各選択ボタンリストを取得
-    fileprivate func getSelectListData() {
-        self.retuals = getRetuals(eventId: event.eventId)
-        self.relations = getRelations(eventId: event.eventId)
-        self.groups = getGroups(eventId: event.eventId)
-    }
+
 }

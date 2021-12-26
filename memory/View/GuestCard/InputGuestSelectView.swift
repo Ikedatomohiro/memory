@@ -32,21 +32,26 @@ class InputGuestSelectView: UIView {
     func setupView() {
         setupLabel()
         setupSelectCollectionView()
-        setUnderLine()
+//        setUnderLine()
         self.accessibilityIdentifier = identifire
     }
     
     /// ラベル
     func setupLabel(width: Int = Int(screenSize.width)) {
         addSubview(titleLabel)
-        titleLabel.anchor(top: topAnchor, leading: layoutMarginsGuide.leadingAnchor, bottom: layoutMarginsGuide.bottomAnchor, trailing: nil, padding: .init(top: 5, left: 5, bottom: 0, right: 15), size: .init(width: width / 6 , height: .zero))
-        titleLabel.font = .systemFont(ofSize: 24)
+        titleLabel.anchor(top: topAnchor, leading: layoutMarginsGuide.leadingAnchor, bottom: nil, trailing: nil)
+//        titleLabel.anchor(top: topAnchor, leading: layoutMarginsGuide.leadingAnchor, bottom: layoutMarginsGuide.bottomAnchor, trailing: nil, padding: .init(top: 5, left: 5, bottom: 0, right: 15), size: .init(width: width / 6 , height: .zero))
+        var fontSize:CGFloat = 24
+        if (titleLabel.text == "") {
+//           fontSize = 0
+        }
+        titleLabel.font = .systemFont(ofSize: fontSize)
     }
     
-    /// 入力欄
+    /// 選択ボタンエリア
     fileprivate func setupSelectCollectionView() {
         addSubview(selectCollectionView)
-        selectCollectionView.anchor(top: topAnchor, leading: titleLabel.trailingAnchor, bottom: layoutMarginsGuide.bottomAnchor, trailing: layoutMarginsGuide.trailingAnchor)
+        selectCollectionView.anchor(top: titleLabel.bottomAnchor, leading: layoutMarginsGuide.leadingAnchor, bottom: bottomAnchor, trailing: layoutMarginsGuide.trailingAnchor)
         selectCollectionView.passGuestItemDelegate = self
     }
     

@@ -25,10 +25,10 @@ struct GuestInput {
         case zipCode     = "zipcode"
         case address     = "address"
         case telNumber   = "telNumber"
-        case description = "description"
         case relation    = "relation"
         case group       = "group"
-        
+        case description = "description"
+
         static let cellHeadLineList = CellHeadLine.allCases.map({ $0 })
     }
     

@@ -91,18 +91,18 @@ struct Guest {
         return selectDict
     }
     
-    // 儀式の参列をデフォルト不参加にセット。デフォルトのretualsListの配列をDictionary型に変換して返す。
-    func setDefaultAttendance(retualList: [Retual]) -> Dictionary<String, Bool> {
-        return retualList.reduce(into: [String: Bool]()) { $0[$1.id] = false }
-    }
-    
-    func setDefaultRelation(relationList: [Relation]) -> Dictionary<String, Bool> {
-        return relationList.reduce(into: [String: Bool]()) { $0[$1.id] = false }
-    }
-    
-    func setDefaultGroup(groupList: [Group]) -> Dictionary<String, Bool> {
-        return groupList.reduce(into: [String: Bool]()) { $0[$1.id] = false }
-    }
+//    // 儀式の参列をデフォルト不参加にセット。デフォルトのretualsListの配列をDictionary型に変換して返す。
+//    func setDefaultAttendance(retualList: [Retual]) -> Dictionary<String, Bool> {
+//        return retualList.reduce(into: [String: Bool]()) { $0[$1.id] = false }
+//    }
+//    
+//    func setDefaultRelation(relationList: [Relation]) -> Dictionary<String, Bool> {
+//        return relationList.reduce(into: [String: Bool]()) { $0[$1.id] = false }
+//    }
+//    
+//    func setDefaultGroup(groupList: [Group]) -> Dictionary<String, Bool> {
+//        return groupList.reduce(into: [String: Bool]()) { $0[$1.id] = false }
+//    }
 }
 
 // MARK: - Extensions

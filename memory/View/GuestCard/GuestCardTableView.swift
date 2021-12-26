@@ -87,7 +87,7 @@ extension GuestCardTableView: UITableViewDataSource {
         var textBody: String = ""
         switch cellItem {
         case .retual:
-            headlineText = "御参加儀式"
+            headlineText = ""
             cellType = .collection
             break
         case .guestName:
@@ -123,11 +123,11 @@ extension GuestCardTableView: UITableViewDataSource {
             cellType = .nomal
             break
         case .relation:
-            headlineText = "御関係１"
+            headlineText = "どなたの御関係ですか"
             cellType = .collection
             break
         case .group:
-            headlineText = "御関係２"
+            headlineText = "どのような御関係ですか"
             cellType = .collection
             break
         }

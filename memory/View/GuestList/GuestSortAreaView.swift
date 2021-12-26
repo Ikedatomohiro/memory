@@ -8,7 +8,7 @@
 import UIKit
 
 protocol SendRetualDelegate: AnyObject {
-    func selectGuestsByRetual(retual: Retual)
+//    func selectGuestsByRetual(retual: Retual)
 }
 
 class GuestControllAreaView: UIView {
@@ -16,16 +16,17 @@ class GuestControllAreaView: UIView {
     fileprivate let guestSortTypePickerView = UIPickerView()
     var guests: [Guest]
     var event: Event
-    fileprivate var retuals: [Retual]
-    var retualList: [Retual] = []
+//    fileprivate var retuals: [Retual]
+//    var retualList: [Retual] = []
     weak var sendRetualDelegate: SendRetualDelegate?
     var csvOutputButton = UIButton()
     
     // MARK:-
-    init(_ guests: [Guest], _ event: Event, _ retuals: [Retual], frame: CGRect) {
+    init(_ guests: [Guest], _ event: Event, frame: CGRect) {
+//        init(_ guests: [Guest], _ event: Event, _ retuals: [Retual], frame: CGRect) {
         self.guests = guests
         self.event = event
-        self.retuals = retuals
+//        self.retuals = retuals
         super.init(frame: frame)
         setup()
     }
@@ -40,9 +41,9 @@ class GuestControllAreaView: UIView {
     }
     
     func setupGuestSortPickerView() {
-        let retual = Retual.init(name: "---")
-        retualList.append(retual)
-        retualList.append(contentsOf: retuals)
+//        let retual = Retual.init(name: "---")
+//        retualList.append(retual)
+//        retualList.append(contentsOf: retuals)
         
         guestSortTypePickerView.delegate = self
         guestSortTypePickerView.dataSource = self
@@ -74,17 +75,17 @@ class GuestControllAreaView: UIView {
     }
     
     func csvOutput() {
-        guard let dirURL = FileManager.default.urls(for: .documentDirectory, in: .userDomainMask).first else { return }
-        let path = dirURL.appendingPathComponent("\(event.eventName).csv")
-        let csvList = CsvList()
-        let data: Data? = csvList.outputGuestList(guests, retuals)
-        guard let textFile = data else { return }
-        do {
-            try textFile.write(to: path)
-            aLartCsvOutput(title: "CSVファイル出力", message: "ファイルアプリにCSVファイルを作成しました。")
-        } catch {
-            print("CSVファイル出力失敗")
-        }
+//        guard let dirURL = FileManager.default.urls(for: .documentDirectory, in: .userDomainMask).first else { return }
+//        let path = dirURL.appendingPathComponent("\(event.eventName).csv")
+//        let csvList = CsvList()
+//        let data: Data? = csvList.outputGuestList(guests, retuals)
+//        guard let textFile = data else { return }
+//        do {
+//            try textFile.write(to: path)
+//            aLartCsvOutput(title: "CSVファイル出力", message: "ファイルアプリにCSVファイルを作成しました。")
+//        } catch {
+//            print("CSVファイル出力失敗")
+//        }
     }
     
     func animateView(_ viewToAnimate:UIView) {
@@ -126,17 +127,19 @@ extension GuestControllAreaView:UIPickerViewDataSource {
     }
     
     func pickerView(_ pickerView: UIPickerView, numberOfRowsInComponent component: Int) -> Int {
-        return retualList.count
+        return 1
+//        return retualList.count
     }
     
     func pickerView(_ pickerView: UIPickerView, titleForRow row: Int, forComponent component: Int) -> String? {
-        return retualList[row].retualName
+        return "手直し中"
+        //        return retualList[row].retualName
     }
     
     func pickerView(_ pickerView: UIPickerView, didSelectRow row: Int, inComponent component: Int) {
         
-        print(retualList[row])
-        sendRetualDelegate?.selectGuestsByRetual(retual: retualList[row])
+//        print(retualList[row])
+//        sendRetualDelegate?.selectGuestsByRetual(retual: retualList[row])
         
     }
 }

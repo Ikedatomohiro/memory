@@ -32,7 +32,7 @@ class InputGuestPlainView: UIView {
     func setupView() {
         setupLabel()
         setupTextField()
-        setUnderLine()
+//        setUnderLine()
         self.accessibilityIdentifier = identifire
     }
     

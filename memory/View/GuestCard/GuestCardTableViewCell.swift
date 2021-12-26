@@ -83,7 +83,7 @@ class GuestCardTableViewCell: UITableViewCell {
         let collectionView = InputGuestSelectView(frame: frame, labelText: headlineText, identifire: cellItem.rawValue, collections: collections)
         contentView.addSubview(collectionView)
         collectionView.passGuestItemDelegate = self
-        collectionView.anchor(top: layoutMarginsGuide.topAnchor, leading: layoutMarginsGuide.leadingAnchor, bottom: layoutMarginsGuide.bottomAnchor, trailing: layoutMarginsGuide.trailingAnchor, padding: .init(top: 5, left: 5, bottom: 0, right: 15), size: .init(width: screenSize.width / 6 , height: .zero))
+        collectionView.anchor(top: topAnchor, leading: layoutMarginsGuide.leadingAnchor, bottom: bottomAnchor, trailing: layoutMarginsGuide.trailingAnchor, padding: .init(top: 5, left: 5, bottom: 0, right: 15), size: .init(width: screenSize.width / 6 , height: .zero))
     }
 }
 
