@@ -123,7 +123,7 @@ class EventMenuViewController: UIViewController {
             vc = GuestCardViewController(event: event, collectionDict: collectionDict)
             break
         case "guestList":
-//            vc = GuestListViewController(event, retuals, guests)
+            vc = GuestListViewController(event, guests: guests, collectionDict: collectionDict)
             break
         case "eventInfo":
             vc = EventInfoViewController(event: event)

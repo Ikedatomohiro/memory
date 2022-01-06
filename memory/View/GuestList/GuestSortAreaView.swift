@@ -14,19 +14,17 @@ protocol SendRetualDelegate: AnyObject {
 class GuestControllAreaView: UIView {
     
     fileprivate let guestSortTypePickerView = UIPickerView()
-    var guests: [Guest]
-    var event: Event
-//    fileprivate var retuals: [Retual]
-//    var retualList: [Retual] = []
+    var collectionDict: Dictionary<String, [CollectionList]>
+
+
+
     weak var sendRetualDelegate: SendRetualDelegate?
     var csvOutputButton = UIButton()
     
     // MARK:-
-    init(_ guests: [Guest], _ event: Event, frame: CGRect) {
-//        init(_ guests: [Guest], _ event: Event, _ retuals: [Retual], frame: CGRect) {
-        self.guests = guests
-        self.event = event
-//        self.retuals = retuals
+    init(collectionDict: Dictionary<String, [CollectionList]>, frame: CGRect) {
+        self.collectionDict = collectionDict
+
         super.init(frame: frame)
         setup()
     }
@@ -112,7 +110,7 @@ class GuestControllAreaView: UIView {
     
     // 検索結果や並べ替えの後の情報を反映
     func updateGuestsData(_ guests: [Guest]) {
-        self.guests = guests
+//        self.guests = guests
     }
 }
 
