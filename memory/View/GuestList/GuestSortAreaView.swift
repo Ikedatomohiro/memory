@@ -7,18 +7,15 @@
 
 import UIKit
 
-protocol SendRetualDelegate: AnyObject {
+protocol SendColumnDelegate: AnyObject {
 //    func selectGuestsByRetual(retual: Retual)
 }
 
 class GuestControllAreaView: UIView {
     
-    fileprivate let guestSortTypePickerView = UIPickerView()
     var collectionDict: Dictionary<String, [CollectionList]>
-
-
-
-    weak var sendRetualDelegate: SendRetualDelegate?
+    lazy var selectRetual = SelectListView(collectionDict: collectionDict, name: "retuals", frame: .zero)
+    weak var sendColumnDelegate: SendColumnDelegate?
     var csvOutputButton = UIButton()
     
     // MARK:-
@@ -39,23 +36,14 @@ class GuestControllAreaView: UIView {
     }
     
     func setupGuestSortPickerView() {
-//        let retual = Retual.init(name: "---")
-//        retualList.append(retual)
-//        retualList.append(contentsOf: retuals)
-        
-        guestSortTypePickerView.delegate = self
-        guestSortTypePickerView.dataSource = self
-        
-        // はじめに表示する項目を指定
-        guestSortTypePickerView.selectRow(0, inComponent: 0, animated: true)
-        
+
         // 画面にピッカーを追加
-        addSubview(guestSortTypePickerView)
-        guestSortTypePickerView.anchor(top: layoutMarginsGuide.topAnchor, leading: layoutMarginsGuide.leadingAnchor, bottom: layoutMarginsGuide.bottomAnchor, trailing: nil, size: .init(width: 120, height: .zero))
+        addSubview(selectRetual)
+        selectRetual.anchor(top: layoutMarginsGuide.topAnchor, leading: layoutMarginsGuide.leadingAnchor, bottom: layoutMarginsGuide.bottomAnchor, trailing: nil, size: .init(width: 120, height: .zero))
     }
     
     func resetGuestSortPickerview() {
-        guestSortTypePickerView.selectRow(0, inComponent: 0, animated: true)
+//        guestSortTypePickerView.selectRow(0, inComponent: 0, animated: true)
     }
     
     fileprivate func setupCsvOutputButton() {
@@ -115,29 +103,29 @@ class GuestControllAreaView: UIView {
 }
 
 // MARK:- Extensions
-extension GuestControllAreaView:UIPickerViewDelegate {
-    
-}
-
-extension GuestControllAreaView:UIPickerViewDataSource {
-    func numberOfComponents(in pickerView: UIPickerView) -> Int {
-        return 1
-    }
-    
-    func pickerView(_ pickerView: UIPickerView, numberOfRowsInComponent component: Int) -> Int {
-        return 1
-//        return retualList.count
-    }
-    
-    func pickerView(_ pickerView: UIPickerView, titleForRow row: Int, forComponent component: Int) -> String? {
-        return "手直し中"
-        //        return retualList[row].retualName
-    }
-    
-    func pickerView(_ pickerView: UIPickerView, didSelectRow row: Int, inComponent component: Int) {
-        
-//        print(retualList[row])
-//        sendRetualDelegate?.selectGuestsByRetual(retual: retualList[row])
-        
-    }
-}
+//extension GuestControllAreaView:UIPickerViewDelegate {
+//
+//}
+//
+//extension GuestControllAreaView:UIPickerViewDataSource {
+//    func numberOfComponents(in pickerView: UIPickerView) -> Int {
+//        return 1
+//    }
+//
+//    func pickerView(_ pickerView: UIPickerView, numberOfRowsInComponent component: Int) -> Int {
+//        return 1
+////        return retualList.count
+//    }
+//
+//    func pickerView(_ pickerView: UIPickerView, titleForRow row: Int, forComponent component: Int) -> String? {
+//        return "手直し中"
+//        //        return retualList[row].retualName
+//    }
+//
+//    func pickerView(_ pickerView: UIPickerView, didSelectRow row: Int, inComponent component: Int) {
+//
+////        print(retualList[row])
+////        sendRetualDelegate?.selectGuestsByRetual(retual: retualList[row])
+//
+//    }
+//}

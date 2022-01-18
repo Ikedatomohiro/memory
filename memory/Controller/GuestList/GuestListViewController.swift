@@ -72,7 +72,7 @@ class GuestListViewController: UIViewController {
     fileprivate func setSortRetual() {
         view.addSubview(guestSortAreaView)
         guestSortAreaView.anchor(top: view.layoutMarginsGuide.topAnchor, leading: view.layoutMarginsGuide.leadingAnchor, bottom: nil, trailing: view.layoutMarginsGuide.trailingAnchor, padding: .init(top: 5, left: 0, bottom: 0, right: 0), size: .init(width: .zero, height: screenSize.height / 10))
-        guestSortAreaView.sendRetualDelegate = self
+        guestSortAreaView.sendColumnDelegate = self
     }
 
     fileprivate func setupGuestListTableView() {
@@ -120,7 +120,7 @@ extension GuestListViewController: TransitionGuestDetailDelegate {
     }
 }
 
-extension GuestListViewController: SendRetualDelegate {
+extension GuestListViewController: SendColumnDelegate {
     func selectGuestsByRetual(retual: CollectionList) {
         // リスト番号リセット
         self.pageNumber = 1
